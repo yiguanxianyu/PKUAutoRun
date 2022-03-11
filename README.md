@@ -20,7 +20,9 @@ Windows/安卓氪金用户请参照 Android.pdf 文件，iOS用户/无Windows用
 
 5. 解锁设备，选择信任此电脑，并保持屏幕亮起
 
-6. 运行 `main.py`
+6. 在手机上开始跑步
+
+7. 运行 `main.py`
 
 ## Q&A
 
