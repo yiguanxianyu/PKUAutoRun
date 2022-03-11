@@ -1,7 +1,7 @@
 from pathlib import Path
 from wget import download
 from zipfile import ZipFile
-import atexit
+
 from pymobiledevice3.usbmux import list_devices
 from pymobiledevice3.lockdown import LockdownClient
 from pymobiledevice3.services.mobile_image_mounter import MobileImageMounterService
@@ -85,8 +85,6 @@ def main():
 
     device_LockdownClient = LockdownClient(device_id)
     device_info = device_LockdownClient.all_values
-
-    atexit.register(unmount_image, LockdownClient)
 
     ios_version = device_info["ProductVersion"]
     device_name = device_info["DeviceName"]
