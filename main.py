@@ -89,7 +89,8 @@ def main():
     ios_version = device_info["ProductVersion"]
     device_name = device_info["DeviceName"]
 
-    print(f"已连接到您的设备：{device_name}, iOS/iPadOS 版本为{ios_version}。请保证在镜像挂载完成之前手机已解锁且屏幕亮起。")
+    print(f"已连接到您的设备：{device_name}, iOS/iPadOS 版本为{ios_version}。")
+    print("请保证在镜像挂载完成之前手机已解锁且屏幕亮起。")
 
     ios_version = ios_version[0:4]
     ios_version_replace = {"14.8": "14.7"}
