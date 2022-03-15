@@ -94,7 +94,7 @@ def main(gpx_path):
     print("请保证在镜像挂载完成之前手机已解锁且屏幕亮起。")
 
     ios_version = ios_version[0:4]
-    ios_version_replace = {"14.8": "14.7"}
+    ios_version_replace = {"14.8": "14.7", "15.1": "15.0"}
     if ios_version in ios_version_replace.keys():
         ios_version = ios_version_replace[ios_version]
 
@@ -115,4 +115,4 @@ if __name__ == "__main__":
 
 """)
 
-    main(r"./samples\54_36m15s_5.1km.gpx")
+    main(r"./samples/54_36m15s_5.1km.gpx")
