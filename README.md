@@ -1,6 +1,6 @@
 # PKUAutoRun
 
-或许是一种可以偷懒的方法。**目前仍在开发中。**
+或许是一种可以偷懒的方法。**目前仍在开发中，** 如果有各种问题欢迎提 issue。~~来个人试用一下吧求求了~~
 
 PKUAutoRun 是一个顾名思义的工具。它面向 iOS/iPadOS，可以在 macOS 和 Windows 中运行（Linux 由于缺少 iTunes 驱动而无法使用）。通过 PKUAutoRun ，你甚至可以使用 iPad 完成跑步打卡（不过这是否略显赛博朋克）。然而，如果你并不使用 iPhone 或者 iPad ，就无法直接使用这个项目。不过针对其他平台，这里也给出了一些相应的建议。
 
@@ -8,10 +8,10 @@ PKUAutoRun 是一个顾名思义的工具。它面向 iOS/iPadOS，可以在 mac
 
 由于学业原因，此项目无法频繁更新，因此更丰富的功能可能短期内不会出现。不过现在的版本已经足够你进行跑步了。 
 
-#### 待做的功能
+**待做的功能**
 
 - [ ] 显示剩余的时间
-- [ ] <del>使用程序生成随机的轨迹进行跑步打卡。</del>此项原本在计划中，然而由于本人时间精力有限，虽然暂时没有能力去做了
+- [ ] ~~使用程序生成随机的轨迹进行跑步打卡。~~ 此项原本在计划中，然而由于本人时间精力有限，暂时没有能力去做了。
 
 ## 可能的方案
 
@@ -21,7 +21,7 @@ PKUAutoRun 是一个顾名思义的工具。它面向 iOS/iPadOS，可以在 mac
   
 - 如果你使用安卓手机（包括鸿蒙）但没有 root
 
-    - 你使用 Windows 系统
+    - 你使用 Windows
 
         安卓模拟器 + FakeLocation
 
@@ -29,15 +29,19 @@ PKUAutoRun 是一个顾名思义的工具。它面向 iOS/iPadOS，可以在 mac
 
         PKUNoRun
 
-    - 你使用 macOS/Linux 并且使用乐动力
+    - 你使用 Linux 并且使用乐动力
 
         安卓模拟器 + FakeLocation
+        
+    - 你使用 macOS 并且使用乐动力
+
+        求求你不要用这么阴间的组合
 
 - 如果你使用 iPhone/iPad
 
-    - 你使用 Windows 系统
+    - 你使用 Windows
 
-        PKUAutoRun 或 FakeLocation
+        PKUAutoRun 或 安卓模拟器 + FakeLocation
 
     - 你使用 macOS
 
@@ -49,13 +53,20 @@ PKUAutoRun 是一个顾名思义的工具。它面向 iOS/iPadOS，可以在 mac
 
 
 
+请注意：
+
+- 我并不了解 Linux 安卓模拟器的工作情况，建议不要使用（应该不会有人只使用 GNU/Linux 吧）。
+- 本程序不保证能否在虚拟机中正常工作，有需要请自行尝试。
+
+
+
 PKUNoRun参见：[PKUNoRun](https://github.com/PKUNoRun/PKUNoRun)
 
 FakeLocation 需要氪金使用（但不贵），详情参见 [Android.pdf](https://github.com/yiguanxianyu/PKUAutoRun/blob/main/Android.pdf)
 
 ## 用法
 
-1. （仅限 Windows 用户）下载 [iTunes](https://www.apple.com.cn/itunes/) 64位版并安装。你可以直接[点击这里](https://www.apple.com/itunes/download/win64)下载，不要使用 Microsoft Store 版本的 iTunes ；
+1. （仅限 Windows 用户）下载 [iTunes](https://www.apple.com.cn/itunes/) 64位版并安装。你可以直接[点击这里](https://www.apple.com/itunes/download/win64)下载，不要使用 Microsoft Store 版本的 iTunes；
 
 2. 安装 [Python3](https://www.python.org/)。建议使用 Python 3.9 及更新的版本，你也可以在其他的版本上自行测试；
 
@@ -69,9 +80,11 @@ FakeLocation 需要氪金使用（但不贵），详情参见 [Android.pdf](http
 
 5. 关闭打卡软件除了定位和网络以外的所有权限；
 
-6. 在手机上开始跑步；
+6. 在 `main.py` 中修改你要使用的 GPX 文件；
 
-7. 运行 `main.py`，这之后你可以让手机屏幕自动关闭。
+7. 运行 `main.py`；
+
+8. 在手机上开始跑步，这之后你可以让手机屏幕自动关闭。
 
 ## Q&A
 
@@ -93,6 +106,6 @@ FakeLocation 需要氪金使用（但不贵），详情参见 [Android.pdf](http
    你可以直接发起 Pull Request 。如果你不知道如何发起 PR ，也可以将你的 GPX 文件发送至 yiguanxianyu@protonmail.com ，由我上传数据。
    
 
-### 写在最后
+## 写在最后
 
 当然，我还是希望大家能够自己去跑一跑步的。毕竟，健康也很重要嘛。
