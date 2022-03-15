@@ -2,14 +2,16 @@
 
 或许是一种可以偷懒的方法。**目前仍在开发中。**
 
-PKUAutoRun 是一个顾名思义的工具。它面向 iOS/iPadOS，可以在 macOS 和 Windows 中运行。因此如果你并不使用 iPhone 或者 iPad ，就无法直接使用这个项目。不过针对其他平台，这里也给出了一些相应的建议。目前你只能通过在手机上观察并在适当的时间手动结束。程序所模拟的轨迹来自于真实跑步的记录，所以需要更多的补充。欢迎你上传自己的跑步记录。
+PKUAutoRun 是一个顾名思义的工具。它面向 iOS/iPadOS，可以在 macOS 和 Windows 中运行（Linux 由于缺少 iTunes 驱动而无法使用）。通过 PKUAutoRun ，你甚至可以使用 iPad 完成跑步打卡（不过这是否略显赛博朋克）。然而，如果你并不使用 iPhone 或者 iPad ，就无法直接使用这个项目。不过针对其他平台，这里也给出了一些相应的建议。
 
-通过 PKUAutoRun ，你甚至可以使用 iPad 完成跑步打卡（不过这是否略显赛博朋克）。 
+目前你只能通过在手机上观察并在适当的时间手动结束。程序所模拟的轨迹来自于真实跑步的记录，所以需要更多的补充。欢迎你上传自己的跑步记录。具体方法见 [Q&A](https://github.com/yiguanxianyu/PKUAutoRun#qa)。
+
+由于学业原因，此项目无法频繁更新，因此更丰富的功能可能短期内不会出现。不过现在的版本已经足够你进行跑步了。 
 
 #### 待做的功能
 
 - [ ] 显示剩余的时间
-- [ ] ~~使用程序生成随机的轨迹进行跑步打卡。~~此项原本在计划中，然而由于本人时间精力有限，暂时没有能力去做了
+- [ ] ~~使用程序生成随机的轨迹进行跑步打卡。~~此项原本在计划中，然而由于本人时间精力有限，虽然暂时没有能力去做了
 
 ## 可能的方案
 
@@ -59,7 +61,7 @@ FakeLocation 需要氪金使用（但不贵），详情参见 [Android.pdf](http
 
 3. 安装程序运行所需的依赖包：
 
-     `pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple`
+    `pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple`
 
 4. 将你的 iOS 设备通过 USB 端口连接到电脑；
 
@@ -69,7 +71,7 @@ FakeLocation 需要氪金使用（但不贵），详情参见 [Android.pdf](http
 
 6. 在手机上开始跑步；
 
-7. 运行 `main.py`。
+7. 运行 `main.py`，这之后你可以让手机屏幕自动关闭。
 
 ## Q&A
 
@@ -84,11 +86,11 @@ FakeLocation 需要氪金使用（但不贵），详情参见 [Android.pdf](http
 3. 我怎么记录自己的数据？
 
    - 如果你有 Apple Watch ，你可以在乐动力上开始跑步的同时使用体能训练 App 记录你的运动信息，跑步结束后你可以在 iPhone 的健身 App — 体能训练中看到这次运动记录。进入健康—摘要，点击头像，然后拉到最底，选择导出所有健康数据。将导出的 zip 文件传至电脑上解压。在 workout-routes 文件夹内，你可以看到已导出的 GPX 文件。
-   - 你可以在 App Store 下载 `Open GPX Tracker` ,在跑步时和乐动力同时使用并记录轨迹。
+   - （推荐）你可以在 App Store 下载 `Open GPX Tracker` ，在跑步时和乐动力同时使用并记录轨迹。
 
 4. 我怎么上传自己的数据造福人类？
 
-   - 你可以直接发起 Pull Request 。如果你不知道如何发起 PR ，也可以将你的 GPX 文件发送至 yiguanxianyu@protonmail.com ，由我上传数据。
+   你可以直接发起 Pull Request 。如果你不知道如何发起 PR ，也可以将你的 GPX 文件发送至 yiguanxianyu@protonmail.com ，由我上传数据。
    
 
 ### 写在最后
