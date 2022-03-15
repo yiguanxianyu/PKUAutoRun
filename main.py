@@ -115,4 +115,4 @@ if __name__ == "__main__":
 
 """)
 
-    main("./samples/route_2022-02-26_9.00pm.gpx")
+    main(r"./samples\54_36m15s_5.1km.gpx")
