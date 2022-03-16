@@ -129,4 +129,6 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
-/Contents/
+
+Contents
+preprocessed
