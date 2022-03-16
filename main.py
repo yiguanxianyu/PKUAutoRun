@@ -2,6 +2,7 @@ import image
 from preprocessing import PreProcesser
 from pymobiledevice3.usbmux import list_devices
 from pymobiledevice3.lockdown import LockdownClient
+from pymobiledevice3.services.diagnostics import DiagnosticsService
 from pymobiledevice3.services.simulate_location import DtSimulateLocation
 
 
@@ -44,7 +45,10 @@ def main(gpx_path):
     pps.show_info()
     play_gpx(device_LockdownClient, "./preprocessed/tempgpx.gpx")
     image.unmount_image(device_LockdownClient)
-    input("跑步完成，按下回车键退出")
+
+    arg = input("跑步完成，请重启手机。输入1将自动重启")
+    if arg == 1:
+        DiagnosticsService(device_LockdownClient).restart()
 
 
 if __name__ == "__main__":
