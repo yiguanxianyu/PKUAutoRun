@@ -1,6 +1,8 @@
 # PKUAutoRun
 
-或许是一种可以偷懒的方法。**目前仍在开发中，** 如果有各种问题欢迎提 issue。~~来个人试用一下吧求求了~~
+或许是一种可以偷懒的方法。
+
+**目前仍在开发中，** 当前版本 v0.2 (2022-03-16) 。如果有各种问题欢迎提 issue。~~来个人试用一下吧求求了~~
 
 PKUAutoRun 是一个顾名思义的工具。它面向 iOS/iPadOS，可以在 macOS 和 Windows 中运行（Linux 由于缺少 iTunes 驱动而无法使用）。通过 PKUAutoRun ，你甚至可以使用 iPad 完成跑步打卡（这是否略显赛博朋克）。然而，如果你并不使用 iPhone 或者 iPad ，就无法直接使用这个项目。不过针对其他平台，[这里](https://github.com/yiguanxianyu/PKUAutoRun#可能的方案)也给出了一些相应的建议。
 
@@ -10,8 +12,9 @@ PKUAutoRun 是一个顾名思义的工具。它面向 iOS/iPadOS，可以在 mac
 
 **待做的功能**
 
-- [ ] 显示剩余的时间
-- [ ] 为已有的轨迹加入随机的漂移
+- [ ] 实时显示剩余的时间
+- [X] 为已有的轨迹加入随机的漂移
+- [X] 略微加速以减少时间
 - [ ] ~~使用程序生成随机的轨迹进行跑步打卡。~~ 此项原本在计划中，然而由于本人时间精力有限，暂时没有办法去做了。
 
 ## 用法
@@ -20,7 +23,7 @@ PKUAutoRun 是一个顾名思义的工具。它面向 iOS/iPadOS，可以在 mac
 
 1. Windows 用户下载 [iTunes](https://www.apple.com.cn/itunes/) 64位版并安装。你可以直接[点击这里](https://www.apple.com/itunes/download/win64)下载，不要使用 Microsoft Store 版本的 iTunes；
 
-2. 安装 [Python3](https://www.python.org/)。建议使用 Python 3.9 及更新的版本，你也可以在其他的版本上自行测试。你还可以尝试[打包好的程序](https://github.com/yiguanxianyu/PKUAutoRun/releases/latest)，这可以帮你省去安装 Python 和依赖包的工作，不过并不能保证完整的可用性；
+2. 安装 [Python3](https://www.python.org/)。建议使用 Python 3.9 及更新的版本，你也可以在其他的版本上自行测试。你还可以尝试[打包好的程序](https://github.com/yiguanxianyu/PKUAutoRun/releases/latest)，这可以帮你省去安装 Python 和依赖包的工作；
 
 3. 安装程序运行所需的依赖包：
 
@@ -50,7 +53,7 @@ PKUAutoRun 是一个顾名思义的工具。它面向 iOS/iPadOS，可以在 mac
 
 3. 我如何记录自己的数据？
 
-   - 如果你有 Apple Watch ，你可以在乐动力/PKURunner上开始跑步的同时使用体能训练 App 记录你的运动信息，跑步结束后你可以在 iPhone 的健身 App — 体能训练中看到这次运动记录。进入`健康 — 摘要`，点击头像，然后拉到最底，选择`导出所有健康数据`。将导出的 zip 文件传至电脑上解压。在 workout-routes 文件夹内，你可以看到已导出的 GPX 文件。
+   - 如果你有 Apple Watch ，你可以在乐动力/PKURunner上开始跑步的同时使用体能训练 App 记录你的运动信息，跑步结束后你可以在 iPhone 的健身 App — 体能训练中看到这次运动记录。进入`健康App — 摘要`，点击头像，然后拉到最底，选择`导出所有健康数据`。将导出的 zip 文件传至电脑上解压。在 workout-routes 文件夹内，你可以看到已导出的 GPX 文件。
    - （推荐）你可以在 App Store 下载 `Open GPX Tracker` ，在跑步时和乐动力/PKURunner同时使用并记录轨迹。
 
 4. 我如何上传自己的数据造福人类？
