@@ -1,5 +1,5 @@
 import image
-from preprocessing import PreProcesser
+from preprocessing import PreProcessor
 from pymobiledevice3.usbmux import list_devices
 from pymobiledevice3.lockdown import LockdownClient
 from pymobiledevice3.services.diagnostics import DiagnosticsService
@@ -26,8 +26,8 @@ def main(gpx_path):
     device = device_list[0]
     device_id = device.serial
 
-    device_LockdownClient = LockdownClient(device_id)
-    device_info = device_LockdownClient.all_values
+    device_lockdown_client = LockdownClient(device_id)
+    device_info = device_lockdown_client.all_values
 
     ios_version = device_info["ProductVersion"]
     device_name = device_info["DeviceName"]
@@ -40,15 +40,15 @@ def main(gpx_path):
     if ios_version in ios_version_replace.keys():
         ios_version = ios_version_replace[ios_version]
 
-    image.mount_image(device_LockdownClient, ios_version)
-    pps = PreProcesser(gpx_path)
+    image.mount_image(device_lockdown_client, ios_version)
+    pps = PreProcessor(gpx_path)
     pps.show_info()
-    play_gpx(device_LockdownClient, "./preprocessed/tempgpx.gpx")
-    image.unmount_image(device_LockdownClient)
+    play_gpx(device_lockdown_client, "./preprocessed/temp-gpx.gpx")
+    image.unmount_image(device_lockdown_client)
 
     arg = input("跑步完成，请重启手机。输入1将自动重启")
     if arg == 1:
-        DiagnosticsService(device_LockdownClient).restart()
+        DiagnosticsService(device_lockdown_client).restart()
 
 
 if __name__ == "__main__":
@@ -62,5 +62,5 @@ if __name__ == "__main__":
 
 """)
     # path = input("请输入 GPX 文件路径或将文件拖入到这里并按下回车：")
-    path = r"./samples/54_7.3km.gpx"
+    path = r"./samples/54_3.5km.gpx"
     main(path)

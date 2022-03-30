@@ -3,7 +3,7 @@ from random import random
 from datetime import datetime, timedelta
 
 
-class PreProcesser:
+class PreProcessor:
     def preprocess(self, input_path):
         gpx_file = open(input_path, 'r')
         gpx = parse(gpx_file)
@@ -40,10 +40,10 @@ class PreProcesser:
 
     def show_info(self):
         tb = self.gpx.get_time_bounds()
-        durtime = tb.end_time - tb.start_time
+        dur_time = tb.end_time - tb.start_time
 
         # 以秒记录的总时长
-        total_time_sec = durtime.total_seconds()
+        total_time_sec = dur_time.total_seconds()
         # 以分秒记录的总时长
         total_min, total_sec = divmod(total_time_sec, 60)
 
@@ -51,24 +51,25 @@ class PreProcesser:
         avg_speed_min = int(avg_speed)
         avg_speed_sec = int((avg_speed - avg_speed_min) * 60)
 
-        currtime = datetime.now()
-        end_time = durtime + currtime
+        curr_time = datetime.now()
+        end_time = dur_time + curr_time
 
         print(f"""
 跑步开始：
   总里程：\t{int(self.length)}米
   平均配速：\t{avg_speed_min}分{avg_speed_sec}秒每公里
   总时长：\t{int(total_min)}分{int(total_sec)}秒
-  开始时间：\t{currtime}
+  开始时间：\t{curr_time}
   结束时间：\t{end_time}（预计）
 """)
 
     def __init__(self, input_path) -> None:
         self.length = 0
         self.preprocess(input_path)
+        self.gpx=None
 
 
 if __name__ == "__main__":
-    input = r"./samples/54_3.5km.gpx"
-    a = PreProcesser(input)
+    _input = r"./samples/54_3.5km.gpx"
+    a = PreProcessor(_input)
     a.show_info()
