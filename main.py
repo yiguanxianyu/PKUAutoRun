@@ -62,5 +62,5 @@ if __name__ == "__main__":
 
 """)
     # path = input("请输入 GPX 文件路径或将文件拖入到这里并按下回车：")
-    path = r"./samples/54_3.5km.gpx"
+    path = r"./samples/54_6.5km.gpx"
     main(path)

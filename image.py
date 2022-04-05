@@ -12,7 +12,6 @@ def download_image(ios_version):
     img_url = base_url + ios_version + ".zip"
 
     Path(base_dir).mkdir(parents=True, exist_ok=True)
-    Path("./preprocessed").mkdir(parents=True, exist_ok=True)
 
     print("开始下载模拟所需的开发者镜像文件")
     if not Path(img_dir).exists():

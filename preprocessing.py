@@ -1,6 +1,7 @@
 from gpxpy import parse
 from random import random
 from datetime import datetime, timedelta
+from pathlib import Path
 
 
 class PreProcessor:
@@ -32,7 +33,8 @@ class PreProcessor:
                                                   time_delta=time_delta,
                                                   force=True)
 
-        with open("./preprocessed/tempgpx.gpx", "w") as f:
+        Path("./preprocessed").mkdir(exist_ok=True)
+        with open("./preprocessed/temp-gpx.gpx", "w") as f:
             f.write(gpx.to_xml())
 
         gpx_file.close()
@@ -65,8 +67,9 @@ class PreProcessor:
 
     def __init__(self, input_path) -> None:
         self.length = 0
-        self.preprocess(input_path)
         self.gpx=None
+        self.preprocess(input_path)
+
 
 
 if __name__ == "__main__":
