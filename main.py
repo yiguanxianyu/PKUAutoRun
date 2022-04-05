@@ -46,8 +46,8 @@ def main(gpx_path):
     play_gpx(device_lockdown_client, "./preprocessed/temp-gpx.gpx")
     image.unmount_image(device_lockdown_client)
 
-    arg = input("跑步完成，请重启手机。输入1将自动重启")
-    if arg == 1:
+    arg = input("跑步完成，请先结束跑步，然后重启设备。输入1将自动重启")
+    if arg == "1":
         DiagnosticsService(device_lockdown_client).restart()
 
 
