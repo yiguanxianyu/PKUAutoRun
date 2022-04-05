@@ -2,7 +2,9 @@
 
 或许是一种可以偷懒的方法。
 
-**开发中** 当前版本 v0.3.1 (2022-03-17)，[更新日志](https://github.com/yiguanxianyu/PKUAutoRun/blob/main/CHANGELOG.md)。如果有各种问题欢迎提 issue。~~来个人试用一下吧求求了~~
+当前版本 v0.3.1 (2022-03-17)，[更新日志](https://github.com/yiguanxianyu/PKUAutoRun/blob/main/CHANGELOG.md)。如果有各种问题欢迎提 issue。~~来个人试用一下吧求求了~~
+
+注意：目前的时间提示和配速预计并不准确，请忽略这些数据
 
 PKUAutoRun 是一个顾名思义的工具。它面向 iOS/iPadOS，可以在 macOS 和 Windows 中运行（Linux 由于缺少 iTunes 驱动而无法使用）。通过 PKUAutoRun ，你甚至可以使用 iPad 完成跑步打卡（这是否略显赛博朋克）。然而，如果你并不使用 iPhone 或者 iPad ，就无法直接使用这个项目。不过针对其他平台，[这里](https://github.com/yiguanxianyu/PKUAutoRun#可能的方案)也给出了一些相应的建议。
 
