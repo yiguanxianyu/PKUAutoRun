@@ -29,13 +29,12 @@ def main(gpx_path):
     device_lockdown_client = LockdownClient(device_id)
     device_info = device_lockdown_client.all_values
 
-    ios_version = device_info["ProductVersion"]
+    ios_version = device_info["ProductVersion"][0:4]
     device_name = device_info["DeviceName"]
 
     print(f"已连接到您的设备：{device_name}, iOS/iPadOS 版本为{ios_version}。")
     print("请保证在镜像挂载完成之前手机已解锁且屏幕亮起。")
 
-    ios_version = ios_version[0:4]
     ios_version_replace = {"14.8": "14.7", "15.1": "15.0"}
     if ios_version in ios_version_replace.keys():
         ios_version = ios_version_replace[ios_version]

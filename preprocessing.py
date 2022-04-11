@@ -5,6 +5,11 @@ from pathlib import Path
 
 
 class PreProcessor:
+    def __init__(self, input_path) -> None:
+        self.length = 0
+        self.gpx = None
+        self.preprocess(input_path)
+
     def preprocess(self, input_path):
         gpx_file = open(input_path, 'r')
         gpx = parse(gpx_file)
@@ -64,12 +69,6 @@ class PreProcessor:
   开始时间：\t{curr_time}
   结束时间：\t{end_time}（预计）
 """)
-
-    def __init__(self, input_path) -> None:
-        self.length = 0
-        self.gpx=None
-        self.preprocess(input_path)
-
 
 
 if __name__ == "__main__":
