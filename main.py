@@ -24,9 +24,6 @@ def play_gpx(lockdown, filename):
 
     tasks = [set_loc(location_simulator, p.latitude, p.longitude, (p.time - start_time).total_seconds()) for
              p in points]
-    
-    for p in points:
-        print((p.time - start_time).total_seconds())
 
     print("开始模拟跑步")
     loop = asyncio.get_event_loop()
@@ -83,5 +80,6 @@ if __name__ == "__main__":
 
 """)
     path = input("请输入 GPX 文件路径或将文件拖入到这里并按下回车：")
-    # path = r"./samples/54_3.gpx"
+    # 如果在 python 脚本中运行程序，可以直接在下面修改路径使用：
+    # path = r"./samples/54_3.5km.gpx"
     main(path)
