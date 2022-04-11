@@ -81,9 +81,5 @@ if __name__ == "__main__":
 """)
     path = input("请输入 GPX 文件路径或将文件拖入到这里并按下回车：")
     # 如果在 python 脚本中运行程序，可以直接在下面修改路径使用：
-<<<<<<< HEAD
     # path = r"./samples/54_3.5km.gpx"
-=======
-    # path = r"./samples/54_3.gpx"
->>>>>>> 1bd1bf010f0b903fe9d635594f2f80e55a370ee4
     main(path)
