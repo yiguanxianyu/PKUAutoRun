@@ -1,53 +1,51 @@
 from gpxpy import parse
 from random import random
 from datetime import datetime, timedelta
-from pathlib import Path
 
 
 class PreProcessor:
-    def __init__(self, input_path) -> None:
+
+    def __init__(self, input_path, speed) -> None:
+        self.time_bounds = None
+        self.points = None
         self.length = 0
-        self.gpx = None
+        self.speed = speed
+        self.path = input_path
         self.preprocess(input_path)
 
     def preprocess(self, input_path):
-        gpx_file = open(input_path, 'r')
-        gpx = parse(gpx_file)
+        with open(input_path, 'r') as gpx_file:
+            gpx = parse(gpx_file)
 
-        for track in gpx.tracks:
-            for segment in track.segments:
-                points = segment.points[::3]
-                for point in points:
-                    point.extensions.clear()
-                    point.remove_elevation()
-                    point.latitude += (random() - 0.5) * 1e-5
-                    point.longitude += (random() - 0.5) * 1e-5
-                segment.points = points
+        points = gpx.tracks[0].segments[0].points[::2]
 
-        length = gpx.length_2d()
-        least_time = length * 0.24
-        num_points = gpx.get_points_no()
-        second_interval = int(least_time / num_points) + 1
+        for point in points:
+            point.extensions.clear()
+            point.remove_elevation()
+            point.latitude += (random() - 0.5) * 5e-6
+            point.longitude += (random() - 0.5) * 5e-6
 
-        self.length = length
+        gpx.tracks[0].segments[0].points = points
+        self.points = points
+        self.length = gpx.length_2d()
 
         start_time = datetime.now().replace(microsecond=0)
-        time_delta = timedelta(seconds=second_interval)
 
-        gpx.fill_time_data_with_regular_intervals(start_time=start_time,
-                                                  time_delta=time_delta,
-                                                  force=True)
+        dur_time = timedelta(seconds=self.length * self.speed / 1000)
 
-        Path("./preprocessed").mkdir(exist_ok=True)
-        with open("./preprocessed/temp-gpx.gpx", "w") as f:
-            f.write(gpx.to_xml())
+        gpx.fill_time_data_with_regular_intervals(
+            start_time=start_time, end_time=start_time + dur_time, force=True
+        )
 
-        gpx_file.close()
-        self.gpx = gpx
+        # from pathlib import Path
+        # Path("./preprocessed").mkdir(exist_ok=True)
+        # with open("./preprocessed/temp-gpx.gpx", "w") as f:
+        #     f.write(gpx.to_xml())
+
+        self.time_bounds = gpx.get_time_bounds()
 
     def show_info(self):
-        tb = self.gpx.get_time_bounds()
-        dur_time = tb.end_time - tb.start_time
+        dur_time = self.time_bounds.end_time - self.time_bounds.start_time
 
         # 以秒记录的总时长
         total_time_sec = dur_time.total_seconds()
