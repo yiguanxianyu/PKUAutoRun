@@ -1,4 +1,6 @@
 import image
+import gpxpy
+import asyncio
 from preprocessing import PreProcessor
 from pymobiledevice3.usbmux import list_devices
 from pymobiledevice3.lockdown import LockdownClient
@@ -6,10 +8,30 @@ from pymobiledevice3.services.diagnostics import DiagnosticsService
 from pymobiledevice3.services.simulate_location import DtSimulateLocation
 
 
+async def set_loc(location_simulator, lat, lon, sleep_time):
+    await asyncio.sleep(sleep_time)
+    location_simulator.set(lat, lon)
+
+
 def play_gpx(lockdown, filename):
-    print("开始模拟跑步")
     location_simulator = DtSimulateLocation(lockdown=lockdown)
-    location_simulator.play_gpx_file(filename)
+
+    with open(filename) as f:
+        gpx = gpxpy.parse(f)
+
+    points = gpx.tracks[0].segments[0].points
+    start_time = points[0].time
+
+    tasks = [set_loc(location_simulator, p.latitude, p.longitude, (p.time - start_time).total_seconds()) for
+             p in points]
+    
+    for p in points:
+        print((p.time - start_time).total_seconds())
+
+    print("开始模拟跑步")
+    loop = asyncio.get_event_loop()
+    loop.run_until_complete(asyncio.wait(tasks))
+
     location_simulator.clear()
     print("跑步完成，请在手机中结束跑步")
 
@@ -60,6 +82,6 @@ if __name__ == "__main__":
  |_|    |_|\_\_____/_/    \_\____|\__\___/|_|  \_\____|_| |_|
 
 """)
-    # path = input("请输入 GPX 文件路径或将文件拖入到这里并按下回车：")
-    path = r"./samples/54_6.5km.gpx"
+    path = input("请输入 GPX 文件路径或将文件拖入到这里并按下回车：")
+    # path = r"./samples/54_3.gpx"
     main(path)
