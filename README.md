@@ -2,7 +2,7 @@
 
 或许是一种可以偷懒的方法。
 
-当前版本 v0.3.2 (2022-04-05)，[更新日志](https://github.com/yiguanxianyu/PKUAutoRun/blob/main/CHANGELOG.md)。如果有各种问题欢迎提 issue。~~快来尝试一下吧~~
+当前版本 v0.4.0 (2022-04-11)，[更新日志](https://github.com/yiguanxianyu/PKUAutoRun/blob/main/CHANGELOG.md)。如果有各种问题欢迎提 issue。~~快来尝试一下吧~~
 
 **注意**：目前的时间提示和配速预计并不准确，实际的运动将会略微慢于预期，可以先忽略这些数据。
 
