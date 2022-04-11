@@ -18,7 +18,10 @@ def auto_run(lockdown, points):
     start_time = points[0].time
 
     tasks = asyncio.gather(*(
-        set_loc(location_simulator, p.latitude, p.longitude, (p.time - start_time).total_seconds())
+        set_loc(location_simulator,
+                p.latitude,
+                p.longitude,
+                (p.time - start_time).total_seconds())
         for p in points
     ))
 
@@ -62,7 +65,7 @@ def main(gpx_path, run_speed):
 
     image.unmount_image(device_lockdown_client)
 
-    arg = input("跑步完成，请在手机上结束跑步，然后重启设备。输入1将自动重启")
+    arg = input("跑步完成, 请在手机上结束跑步, 然后重启设备, 输入1将自动重启")
     if arg == "1":
         DiagnosticsService(device_lockdown_client).restart()
 
@@ -78,9 +81,10 @@ if __name__ == "__main__":
 
 """)
 
-    path = input("请输入 GPX 文件路径或将文件拖入到这里并按下回车：")
-    speed = int(input("请输入你希望的配速，以秒为单位，如五分配速输入300.若不输入，默认为五分配速"))
+    path = input("请输入 GPX 文件路径或将文件拖入到这里：")
+    speed = int(input("请输入你希望的平均配速(秒), 如五分配速输入300:"))
+
     # 如果在 Python 脚本中运行程序，可以直接在下面修改路径使用：
     # path = r"./samples/54_6.5km.gpx"
-    # speed = 260
+    # speed = 280
     main(path, speed)
