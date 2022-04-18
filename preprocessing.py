@@ -10,7 +10,6 @@ class PreProcessor:
         self.points = None
         self.length = 0
         self.speed = speed
-        self.path = input_path
         self.preprocess(input_path)
 
     def preprocess(self, input_path):
@@ -30,13 +29,14 @@ class PreProcessor:
         self.length = gpx.length_2d()
 
         start_time = datetime.now().replace(microsecond=0)
-
         dur_time = timedelta(seconds=self.length * self.speed / 1000)
+        end_time = start_time + dur_time
 
         gpx.fill_time_data_with_regular_intervals(
-            start_time=start_time, end_time=start_time + dur_time, force=True
+            start_time=start_time, end_time=end_time, force=True
         )
 
+        # 将修改后的轨迹点保存到gpx文件
         # from pathlib import Path
         # Path("./preprocessed").mkdir(exist_ok=True)
         # with open("./preprocessed/temp-gpx.gpx", "w") as f:

@@ -16,18 +16,18 @@ def auto_run(lockdown, points):
     location_simulator = DtSimulateLocation(lockdown=lockdown)
 
     start_time = points[0].time
-
-    tasks = asyncio.gather(*(
-        set_loc(location_simulator,
-                p.latitude,
-                p.longitude,
-                (p.time - start_time).total_seconds())
-        for p in points
-    ))
+    loop = asyncio.get_event_loop()
 
     print("开始模拟跑步")
-    loop = asyncio.get_event_loop()
-    loop.run_until_complete(tasks)
+    loop.run_until_complete(
+        asyncio.gather(*(
+            set_loc(location_simulator,
+                    p.latitude,
+                    p.longitude,
+                    (p.time - start_time).total_seconds())
+            for p in points
+        ))
+    )
 
     location_simulator.clear()
 
@@ -42,19 +42,17 @@ def main(gpx_path, run_speed):
         return
 
     device = device_list[0]
-    device_id = device.serial
-
-    device_lockdown_client = LockdownClient(device_id)
+    device_lockdown_client = LockdownClient(device.serial)
     device_info = device_lockdown_client.all_values
 
     ios_version = device_info["ProductVersion"][0:4]
     device_name = device_info["DeviceName"]
 
     print(f"已连接到您的设备：{device_name}, iOS/iPadOS 版本为{ios_version}。")
-    print("请保证在镜像挂载完成之前手机已解锁且屏幕亮起。")
+    print("请确保在镜像挂载完成之前手机已解锁且屏幕亮起。")
 
     ios_version_replace = {"14.8": "14.7", "15.1": "15.0"}
-    if ios_version in ios_version_replace.keys():
+    if ios_version in ios_version_replace:
         ios_version = ios_version_replace[ios_version]
 
     image.mount_image(device_lockdown_client, ios_version)
