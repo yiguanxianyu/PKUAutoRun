@@ -12,11 +12,10 @@ PKUAutoRun 是一个顾名思义的工具。它面向 iOS/iPadOS，可以在 mac
 
 **待做的功能**
 
-- [ ] 实时显示剩余的时间
 - [X] 为已有的轨迹加入随机的漂移
-- [X] ~~略微加速以减少时间~~ 自定义配速
-- [ ] ~~使用程序生成随机的轨迹进行跑步打卡。~~
-    按照目前情况来看意义不是非常大，故决定搁置。
+- [X] 自定义配速
+- [ ] ~~实时显示剩余的时间~~ 似乎并没有这个需求。
+- [ ] ~~使用程序生成随机的轨迹进行跑步打卡。~~ 按照目前情况来看意义不是非常大，故决定搁置。
 
 ## 用法
 
@@ -24,7 +23,7 @@ PKUAutoRun 是一个顾名思义的工具。它面向 iOS/iPadOS，可以在 mac
 
 1. Windows 用户下载 [iTunes](https://www.apple.com.cn/itunes/) 64位版并安装。你可以直接[点击这里](https://www.apple.com/itunes/download/win64)下载，**不要使用 Microsoft Store 版本的 iTunes**；
 
-2. 安装 [Python3](https://www.python.org/)。建议使用 Python 3.9 及更新的版本，你也可以在其他的版本上自行测试。你还可以尝试[打包好的程序](https://github.com/yiguanxianyu/PKUAutoRun/releases/latest)，这可以帮你省去安装 Python 和依赖包的工作；
+2. 安装 [Python3](https://www.python.org/)。理论上支持 Python 3.6+ ，建议 3.9+ 。你还可以尝试[打包好的程序](https://github.com/yiguanxianyu/PKUAutoRun/releases/latest)，这可以帮你省去安装 Python 和依赖包的工作；
 
 3. 下载本项目代码，并安装程序运行所需的依赖包：
 
@@ -104,7 +103,7 @@ PKUAutoRun 是一个顾名思义的工具。它面向 iOS/iPadOS，可以在 mac
 
 请注意：
 
-- 我并不了解 Linux 上安卓模拟器的工作情况，建议不要使用（应该不会有人只使用 GNU/Linux 吧）。
+- 我并不了解 Linux 上安卓模拟器的工作状况，建议不要使用（应该不会有人只使用 GNU/Linux 吧）。
 - 本程序不保证能够在虚拟机中正常工作，有需要请自行尝试。
 
 PKUNoRun参见：[PKUNoRun](https://github.com/PKUNoRun/PKUNoRun)
