@@ -1,6 +1,7 @@
-from gpxpy import parse
-from random import random
 from datetime import datetime, timedelta
+from random import random
+
+from gpxpy import parse
 
 
 class PreProcessor:

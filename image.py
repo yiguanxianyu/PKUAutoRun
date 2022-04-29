@@ -1,7 +1,8 @@
 from pathlib import Path
-from wget import download
 from zipfile import ZipFile
+
 from pymobiledevice3.services.mobile_image_mounter import MobileImageMounterService
+from wget import download
 
 
 def download_image(ios_version):
