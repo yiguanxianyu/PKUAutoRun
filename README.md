@@ -2,13 +2,13 @@
 
 或许是一种可以偷懒的方法。
 
-当前版本 v0.5.0 (2022-04-11)，[更新日志](https://github.com/yiguanxianyu/PKUAutoRun/blob/main/CHANGELOG.md)。如果有各种问题欢迎提 issue。~~快来尝试一下吧~~
+当前版本 v0.6.0 (2022-04-28)，[更新日志](https://github.com/yiguanxianyu/PKUAutoRun/blob/main/CHANGELOG.md)。如果有各种问题欢迎提 issue。~~真的不来尝试一下吗~~
 
-PKUAutoRun 是一个顾名思义的工具。它面向 iOS/iPadOS，可以在 macOS 和 Windows 中运行（Linux 由于缺少 iTunes 驱动而无法使用）。通过 PKUAutoRun ，你甚至可以使用 iPad 完成跑步打卡（这是否略显赛博朋克）。然而，如果你并不使用 iPhone 或者 iPad ，就无法直接使用这个项目。不过针对其他平台，[这里](https://github.com/yiguanxianyu/PKUAutoRun#可能的方案)也给出了一些相应的建议。
+PKUAutoRun 是一个顾名思义的工具。它面向 iOS/iPadOS，可以在 macOS 和 Windows 中运行（Linux 由于缺少 iTunes 驱动而无法使用）。通过 PKUAutoRun ，你甚至可以使用 iPad 完成跑步打卡（这是否略显赛博朋克）。然而，如果你并不使用 iPhone/iPad ，那就无法直接使用这个项目。不过针对其他平台，[这里](https://github.com/yiguanxianyu/PKUAutoRun#可能的方案)也给出了一些相应的建议。
 
 目前你只能通过在手机上观察并在适当的时间手动结束。程序所模拟的轨迹来自于真实跑步的记录，所以目前不能跑出任意长的距离，不过现有的样例应该基本足够使用了。
 
-由于学业原因，此项目可能无法频繁更新，因此更丰富的功能可能短期内不会出现。不过现在的版本已经足够你进行跑步打卡了。由于不知道这个方法能活多久，大家且用且珍惜吧（
+尽管功能不多，不过现在的版本已经足够你进行跑步打卡了。由于不知道这个方法能活多久，大家还是且用且珍惜（
 
 **功能**
 
@@ -24,23 +24,21 @@ PKUAutoRun 是一个顾名思义的工具。它面向 iOS/iPadOS，可以在 mac
 
 1. Windows 用户下载 [iTunes](https://www.apple.com.cn/itunes/) 64位版并安装。你可以直接[点击这里](https://www.apple.com/itunes/download/win64)下载，**不要使用 Microsoft Store 版本的 iTunes**；
 
-2. 安装 [Python3](https://www.python.org/)。理论上支持 Python 3.6+ ，建议 3.9+ 。你还可以尝试[打包好的程序](https://github.com/yiguanxianyu/PKUAutoRun/releases/latest)，这可以帮你省去安装 Python 和依赖包的工作；
+2. 安装 [Python3](https://www.python.org/)。支持 Python 3.6+ 。你还可以尝试[打包好的程序](https://github.com/yiguanxianyu/PKUAutoRun/releases/latest)，这可以帮你省去安装 Python 和依赖包的工作；
 
 3. 下载本项目代码，并安装程序运行所需的依赖包：
 
     `pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple`
 
-4. 将你的 iOS/iPadOS 设备通过 USB 端口连接到电脑；
+4. 将你的设备通过 USB 端口连接到电脑；
 
 5. 解锁设备，选择信任此电脑，并保持屏幕亮起；
 
 5. 关闭打卡软件除了定位和网络以外的所有权限；
 
-6. 在 `main.py` 中修改你要使用的 GPX 文件路径；
+6. 运行 `main.py`，并设定相关配置；
 
-7. 运行 `main.py`；
-
-8. 在手机上开始跑步，这之后你可以让手机屏幕自动关闭。
+7. 在打卡软件中开始跑步，这之后你可以让设备屏幕自动关闭。
 
 ## Q&A
 
