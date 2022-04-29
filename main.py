@@ -53,7 +53,6 @@ def main(gpx_path, run_speed):
         device = device_list[0]
 
     device_lockdown_client = LockdownClient(device.serial)
-    location_simulator = DtSimulateLocation(device_lockdown_client)
 
     device_info = device_lockdown_client.all_values
     device_class = device_info['DeviceClass']
@@ -68,6 +67,7 @@ def main(gpx_path, run_speed):
         ios_version = ios_version_replace[ios_version]
 
     image.mount_image(device_lockdown_client, ios_version)
+    location_simulator = DtSimulateLocation(lockdown=device_lockdown_client)
 
     pps = PreProcessor(gpx_path, run_speed)
     pps.show_info()
@@ -98,10 +98,10 @@ if __name__ == '__main__':
 ''')
 
     print('\n提示: 如果要使用多台设备同时打卡, 请多开本程序')
-    path = input('请输入 GPX 文件路径或将文件拖入到这里，推荐使用相对路径：')
-    speed = int(input('请输入你希望的平均配速(秒), 如五分配速输入300:'))
+    # path = input('请输入 GPX 文件路径或将文件拖入到这里，推荐使用相对路径：')
+    # speed = int(input('请输入你希望的平均配速(秒), 如五分配速输入300:'))
 
     # 如果在 Python 脚本中运行程序，可以直接在下面修改路径使用：
-    # path = r'./samples/54_6.5km.gpx'
-    # speed = 280
+    path = r'./samples/54_6.5km.gpx'
+    speed = 280
     main(path, speed)
