@@ -1,10 +1,12 @@
-import image
 import asyncio
-from preprocessing import PreProcessor
-from pymobiledevice3.usbmux import list_devices
+
 from pymobiledevice3.lockdown import LockdownClient
 from pymobiledevice3.services.diagnostics import DiagnosticsService
 from pymobiledevice3.services.simulate_location import DtSimulateLocation
+from pymobiledevice3.usbmux import list_devices
+
+import image
+from preprocessing import PreProcessor
 
 
 async def set_loc(location_simulator, lat, lon, sleep_time):
@@ -26,8 +28,6 @@ def auto_run(points, location_simulator):
             for p in points
         ))
     )
-
-    location_simulator.clear()
 
 
 def main(gpx_path, run_speed):
@@ -75,10 +75,10 @@ def main(gpx_path, run_speed):
 
     image.unmount_image(device_lockdown_client)
 
-    print('跑步完成, 请在手机上结束跑步, 然后重启设备。')
-    print('  输入 0 以清除定位但不重启设备；')
-    print('  输入 1 以清除定位并且重启设备；')
-    print('  如果什么也不做，可以直接退出程序。')
+    print('跑步完成, 请在手机上结束跑步。建议您重启设备。\n'
+          '- 输入 0 以清除定位但不重启设备；\n'
+          '- 输入 1 以清除定位并且重启设备；\n'
+          '- 如果什么也不做，可以直接退出程序。')
 
     arg = input()
     if arg == '0':
