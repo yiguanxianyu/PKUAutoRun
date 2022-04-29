@@ -1,4 +1,3 @@
-from itertools import product
 import image
 import asyncio
 from preprocessing import PreProcessor
@@ -13,9 +12,7 @@ async def set_loc(location_simulator, lat, lon, sleep_time):
     location_simulator.set(lat, lon)
 
 
-def auto_run(lockdown, points):
-    location_simulator = DtSimulateLocation(lockdown=lockdown)
-
+def auto_run(points, location_simulator):
     start_time = points[0].time
     loop = asyncio.get_event_loop()
 
@@ -56,8 +53,9 @@ def main(gpx_path, run_speed):
         device = device_list[0]
 
     device_lockdown_client = LockdownClient(device.serial)
-    device_info = device_lockdown_client.all_values
+    location_simulator = DtSimulateLocation(device_lockdown_client)
 
+    device_info = device_lockdown_client.all_values
     device_class = device_info['DeviceClass']
     ios_version = device_info['ProductVersion'][0:4]
     device_name = device_info['DeviceName']
@@ -73,12 +71,19 @@ def main(gpx_path, run_speed):
 
     pps = PreProcessor(gpx_path, run_speed)
     pps.show_info()
-    auto_run(device_lockdown_client, pps.points)
+    auto_run(pps.points, location_simulator)
 
     image.unmount_image(device_lockdown_client)
 
-    arg = input('跑步完成, 请在手机上结束跑步, 然后重启设备, 输入1将自动重启')
-    if arg == '1':
+    print('跑步完成, 请在手机上结束跑步, 然后重启设备。')
+    print('  输入 0 以清除定位但不重启设备；')
+    print('  输入 1 以清除定位并且重启设备；')
+    print('  如果什么也不做，可以直接退出程序。')
+
+    arg = input()
+    if arg == '0':
+        location_simulator.clear()
+    elif arg == '1':
         DiagnosticsService(device_lockdown_client).restart()
 
 
@@ -91,7 +96,7 @@ if __name__ == '__main__':
  | |    | . \| |__| / ____ \ |_| | || (_) | | \ \ |_| | | | |
  |_|    |_|\_\_____/_/    \_\____|\__\___/|_|  \_\____|_| |_|
 
-提示: 如果要使用多台设备同时打开, 请多开本程序
+提示: 如果要使用多台设备同时打卡, 请多开本程序
 ''')
 
     path = input('请输入 GPX 文件路径或将文件拖入到这里：')
