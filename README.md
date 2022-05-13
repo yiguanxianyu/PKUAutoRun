@@ -1,21 +1,19 @@
 # PKUAutoRun
 
-或许是一种可以偷懒的方法。
+赛博跑步机，或许是一种可以偷懒的方法。
 
-当前版本 v0.6.0 (2022-04-28)，[更新日志](https://github.com/yiguanxianyu/PKUAutoRun/blob/main/CHANGELOG.md)。如果有各种问题欢迎提 issue。~~真的不来尝试一下吗~~
+当前版本 v1.0.0 (2022-05-13)，[更新日志](https://github.com/yiguanxianyu/PKUAutoRun/blob/main/CHANGELOG.md)。如果有各种问题欢迎提 issue。~~真的不来尝试一下吗\~~~
 
-PKUAutoRun 是一个顾名思义的工具。它面向 iOS/iPadOS，可以在 macOS 和 Windows 中运行（Linux 由于缺少 iTunes 驱动而无法使用）。通过 PKUAutoRun ，你甚至可以使用 iPad 完成跑步打卡（这是否略显赛博朋克）。然而，如果你并不使用 iPhone/iPad ，那就无法直接使用这个项目。不过针对其他平台，[这里](https://github.com/yiguanxianyu/PKUAutoRun#可能的方案)也给出了一些相应的建议。
+PKUAutoRun 是一个顾名思义的工具。它面向 iOS/iPadOS，理论上支持 Windows/macOS/Linux（Linux 平台未经测试）。通过 PKUAutoRun ，你甚至可以使用 iPad 完成跑步打卡（尽显赛博本色）。然而，如果你并不使用 iPhone/iPad ，那就无法直接使用这个项目。不过针对其他平台，[这里](https://github.com/yiguanxianyu/PKUAutoRun#可能的方案)也给出了一些相应的建议。
 
-目前你只能通过在手机上观察并在适当的时间手动结束。程序所模拟的轨迹来自于真实跑步的记录，所以目前不能跑出任意长的距离，不过现有的样例应该基本足够使用了。
-
-尽管功能不多，不过现在的版本已经足够你进行跑步打卡了。由于不知道这个方法能活多久，大家还是且用且珍惜（
+尽管功能不多，不过它已经足够你进行跑步打卡了。由于不知道这个方法能活多久，大家且用且珍惜罢
 
 **功能**
 
-- [X] 为已有的轨迹加入随机的漂移
+- [X] 轨迹不重样
 - [X] 自定义配速
 - [X] 多设备支持（多开）
-- [ ] 使用程序生成随机的轨迹进行跑步打卡。下个版本见。
+- [X] 由程序生成的跑步记录（参见[鸣谢](https://github.com/yiguanxianyu/PKUAutoRun#鸣谢)）
 
 ## 用法
 
@@ -56,10 +54,6 @@ PKUAutoRun 是一个顾名思义的工具。它面向 iOS/iPadOS，可以在 mac
 4. 我的运动步数为 0 ？
 
    由于苹果对于开发者的限制，iOS 只支持模拟定位，而不支持模拟以下内容：定位误差、海拔及其误差、航向、速度、步数等。对于乐动力来说可以通过关闭健康权限的方式避免计步从而绕过这个问题。目前来看这一点并不影响使用。
-
-5. 我如何记录自己的数据？我如何上传自己的数据造福人类？
-
-   目前的样例应该已经足够使用了，如果你有这个需求，请发起一个 `issue` 。
 
 ## 可能的方案
 
@@ -107,6 +101,10 @@ PKUAutoRun 是一个顾名思义的工具。它面向 iOS/iPadOS，可以在 mac
 PKUNoRun参见：[PKUNoRun](https://github.com/PKUNoRun/PKUNoRun)
 
 FakeLocation 需要氪金使用（但不贵），详情参见 [Android.pdf](https://github.com/yiguanxianyu/PKUAutoRun/blob/main/Android.pdf)
+
+## 鸣谢
+
+感谢 [@yuchenxi2000](https://github.com/yuchenxi2000) 在 https://github.com/PKUNoRun/PKUNoRun/issues/17 中提供的跑步记录生成器
 
 ## 写在最后
 

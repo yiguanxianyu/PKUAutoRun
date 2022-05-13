@@ -1,5 +1,11 @@
 # PKUAutoRun CHANGELOG
 
+## v1.0.0
+
+2022-05-13
+
+改为使用跑步记录生成器生成随机轨迹，参见[鸣谢](https://github.com/yiguanxianyu/PKUAutoRun#鸣谢)。
+
 ## v0.6.0
 
 2022-04-28
