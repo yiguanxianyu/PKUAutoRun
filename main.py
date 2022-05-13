@@ -1,4 +1,6 @@
+# -*- coding:utf-8 -*
 import asyncio
+from datetime import datetime, timedelta
 
 from pymobiledevice3.lockdown import LockdownClient
 from pymobiledevice3.services.diagnostics import DiagnosticsService
@@ -6,31 +8,19 @@ from pymobiledevice3.services.simulate_location import DtSimulateLocation
 from pymobiledevice3.usbmux import list_devices
 
 import image
-from preprocessing import PreProcessor
+from gen_record import gen_record
 
 
-async def set_loc(location_simulator, lat, lon, sleep_time):
-    await asyncio.sleep(sleep_time)
-    location_simulator.set(lat, lon)
+async def auto_run_gen(points, time_delta, location_simulator):
+    async def set_loc(lat, lon, t):
+        await asyncio.sleep(t)
+        location_simulator.set(lat, lon)
+
+    tasks = [set_loc(p[0], p[1], p[2] * time_delta) for p in points]
+    await asyncio.gather(*tasks)
 
 
-def auto_run(points, location_simulator):
-    start_time = points[0].time
-    loop = asyncio.get_event_loop()
-
-    print('开始模拟跑步')
-    loop.run_until_complete(
-        asyncio.gather(*(
-            set_loc(location_simulator,
-                    p.latitude,
-                    p.longitude,
-                    (p.time - start_time).total_seconds())
-            for p in points
-        ))
-    )
-
-
-def main(gpx_path, run_speed):
+def main(distance, speed):
     device_list = list_devices()
     if not device_list:
         print('未查找到设备，请确认：')
@@ -69,13 +59,26 @@ def main(gpx_path, run_speed):
     image.mount_image(device_lockdown_client, ios_version)
     location_simulator = DtSimulateLocation(lockdown=device_lockdown_client)
 
-    pps = PreProcessor(gpx_path, run_speed)
-    pps.show_info()
-    auto_run(pps.points, location_simulator)
+    points = gen_record(distance)
+    total_time = speed * distance / 1000
 
+    dur_time = timedelta(seconds=total_time)
+    curr_time = datetime.now().replace(microsecond=0)
+
+    print(f"""
+跑步开始：
+  总里程：\t{int(distance)}米
+  平均配速：\t{speed // 60}分{speed % 60}秒 每公里
+  总时长：\t{dur_time}
+  开始时间：\t{curr_time}
+  结束时间：\t{dur_time + curr_time}（预计）
+    """)
+
+    time_delta = total_time / len(points)
+    asyncio.run(auto_run_gen(points, time_delta, location_simulator))
     image.unmount_image(device_lockdown_client)
 
-    print('跑步完成, 请在手机上结束跑步。建议您重启设备。')
+    print('跑步完成, 请在手机上结束跑步。建议重启设备。')
     print('- 输入 0 以清除定位但不重启设备；')
     print('- 输入 1 以清除定位并且重启设备；')
     print('- 如果什么也不做，可以直接退出程序。')
@@ -85,6 +88,8 @@ def main(gpx_path, run_speed):
         location_simulator.clear()
     elif arg == '1':
         DiagnosticsService(device_lockdown_client).restart()
+
+    return
 
 
 if __name__ == '__main__':
@@ -96,12 +101,18 @@ if __name__ == '__main__':
  | |    | . \| |__| / ____ \ |_| | || (_) | | \ \ |_| | | | |
  |_|    |_|\_\_____/_/    \_\____|\__\___/|_|  \_\____|_| |_|
 ''')
+    print('\nPKUAutoRun v1.0.0')
+    print('提示: 如果要使用多台设备同时打卡, 请多开本程序')
 
-    print('\n提示: 如果要使用多台设备同时打卡, 请多开本程序')
-    # path = input('请输入 GPX 文件路径或将文件拖入到这里，推荐使用相对路径：')
-    # speed = int(input('请输入你希望的平均配速(秒), 如五分配速输入300:'))
+    _distance = int(input('请输入跑步里程(米), 如5公里输入5000: '))
+    if _distance < 1000:
+        print('警告：里程不符合要求')
+
+    _speed = int(input('请输入你希望的平均配速(秒), 如五分配速输入300: '))
+    if not 240 < _speed < 600:
+        print('警告：配速不符合要求')
 
     # 如果在 Python 脚本中运行程序，可以直接在下面修改路径使用：
-    path = r'./samples/54_6.5km.gpx'
-    speed = 280
-    main(path, speed)
+    # _distance = 10000
+    # _speed = 280
+    main(_distance, _speed)
