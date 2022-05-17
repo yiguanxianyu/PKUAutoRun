@@ -39,14 +39,16 @@ class ST:
         num = int(end - start) // n + 1
         # xp和yp是待插值的点
         xp = np.linspace(start - 20, end + 20, num)
-        yp = npr.randn(num) / 3
 
-        self.func = scipy.interpolate.interp1d(xp, yp, kind='cubic')
+        offset = npr.randn(num)
+        offset = np.where(offset > 1.3, 1.5 * offset, offset)
+        offset = np.where(offset < -1, -1, offset)
+        yp = (offset * 2 + 5) * w
 
-    def f(self, _x):
-        if random() < 0.4:
-            return 0
-        return self.func(_x)
+        yp[0] = random() * 2 + 6
+        yp[-1] = random() * 2 + 3
+
+        self.f = scipy.interpolate.interp1d(xp, yp, kind='cubic')
 
 
 s_t_func = None
@@ -197,16 +199,26 @@ def gen_record(distance, start_point=None):
     dist_generated = 0.0
     t = start_point
     step = 4  # 基本步长
-    n = distance // step
 
-    rand_dist = npr.randn(n) / 3 + step
-    rand_shift = npr.randn(n * 2).reshape(-1, 2) * 0.00001
+    rand_offset = npr.randn(10000) * 0.05
+    dist_straight = rand_offset + step
+    dist_curve = rand_offset + step * 0.867
+
+    rand_shift = npr.randn(10000) * 0.000003
+    rand_shift *= np.abs(np.int32(npr.randn(10000))) * 2 + 1
+    rand_shift = rand_shift.reshape(-1, 2)
+    rand_shift[:, 1] *= cos(radians(center[1]))
 
     i = 0
     while dist_generated < distance:
-        d0 = rand_dist[i]  # 前进的距离
+        temp = t % 400
+        if temp < d1 or d2 < temp < d3:
+            d0 = dist_straight[i]
+        else:
+            d0 = dist_curve[i]  # 前进的距离
+
         t1 = adjust_pp_d(t, d0)
-        s1 = (3 + 3 * s_t_func(t)) * w
+        s1 = s_t_func(t)
         # 给轨迹加上随机漂移
         point = move(t1, s1) + rand_shift[i]
 
