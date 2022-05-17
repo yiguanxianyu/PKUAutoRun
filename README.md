@@ -1,12 +1,12 @@
 # PKUAutoRun
 
-赛博跑步机，或许是一种可以偷懒的方法。
+赛博跑步机，或许是一种可以偷懒的方法，也或许不能。
 
 当前版本 v1.0.0 (2022-05-13)，[更新日志](https://github.com/yiguanxianyu/PKUAutoRun/blob/main/CHANGELOG.md)。如果有各种问题欢迎提 issue。~~真的不来尝试一下吗\~~~
 
-PKUAutoRun 是一个顾名思义的工具。它面向 iOS/iPadOS，理论上支持 Windows/macOS/Linux（Linux 平台未经测试）。通过 PKUAutoRun ，你甚至可以使用 iPad 完成跑步打卡（尽显赛博本色）。然而，如果你并不使用 iPhone/iPad ，那就无法直接使用这个项目。不过针对其他平台，[这里](https://github.com/yiguanxianyu/PKUAutoRun#可能的方案)也给出了一些相应的建议。
+PKUAutoRun 是一个顾名思义的工具。它面向 iOS/iPadOS，理论上支持 Windows/macOS/Linux（Linux 平台未经测试）。通过 PKUAutoRun ，你甚至可以使用 iPad 完成跑步打卡（尽显赛博本色）。然而，如果你并不使用 iPhone/iPad ，那就无法直接使用这个项目。
 
-存在较高风险，请使用者自行承担后果！！！
+**存在较高风险，请使用者自行承担后果！！！**
 
 **功能**
 
@@ -21,7 +21,7 @@ PKUAutoRun 是一个顾名思义的工具。它面向 iOS/iPadOS，理论上支�
 
 1. Windows 用户下载 [iTunes](https://www.apple.com.cn/itunes/) 64位版并安装。你可以直接[点击这里](https://www.apple.com/itunes/download/win64)下载，**不要使用 Microsoft Store 版本的 iTunes**；
 
-2. 安装 [Python3](https://www.python.org/)。支持 Python 3.6+ 。你还可以尝试[打包好的程序](https://github.com/yiguanxianyu/PKUAutoRun/releases/latest)，这可以帮你省去安装 Python 和依赖包的工作；
+2. 安装 [Python3](https://www.python.org/)。支持 Python 3.6+ 。
 
 3. 下载本项目代码，并安装程序运行所需的依赖包：
 
@@ -54,53 +54,6 @@ PKUAutoRun 是一个顾名思义的工具。它面向 iOS/iPadOS，理论上支�
 4. 我的运动步数为 0 ？
 
    由于苹果对于开发者的限制，iOS 只支持模拟定位，而不支持模拟以下内容：定位误差、海拔及其误差、航向、速度、步数等。对于乐动力来说可以通过关闭健康权限的方式避免计步从而绕过这个问题。目前来看这一点并不影响使用。
-
-## 可能的方案
-
-- 如果你使用安卓手机（包括鸿蒙）且已经 root （如果你不知道 root 是什么，那就是没有）
-
-    FakeLocation
-
-- 如果你使用安卓手机（包括鸿蒙）但没有 root
-
-    - 你使用 Windows
-
-        安卓模拟器 + FakeLocation
-
-    - 你使用 macOS/Linux 并且使用 PKURunner
-
-        PKUNoRun
-
-    - 你使用 Linux 并且使用乐动力
-
-        安卓模拟器 + FakeLocation
-
-    - 你使用 macOS 并且使用乐动力
-
-        求求你不要用这么阴间的组合
-
-- 如果你使用 iPhone/iPad
-
-    - 你使用 Windows
-
-        PKUAutoRun 或 安卓模拟器 + FakeLocation
-
-    - 你使用 macOS
-
-        PKUAutoRun
-
-    - 你使用 Linux
-
-        安卓模拟器 + FakeLocation
-
-请注意：
-
-- 我并不了解 Linux 上安卓模拟器的工作状况，建议不要使用（应该不会有人只使用 GNU/Linux 吧）。
-- 本程序不保证能够在虚拟机中正常工作，有需要请自行尝试。
-
-PKUNoRun参见：[PKUNoRun](https://github.com/PKUNoRun/PKUNoRun)
-
-FakeLocation 需要氪金使用（但不贵），详情参见 [Android.pdf](https://github.com/yiguanxianyu/PKUAutoRun/blob/main/Android.pdf)
 
 ## 鸣谢
 
