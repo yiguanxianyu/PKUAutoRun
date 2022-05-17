@@ -6,7 +6,7 @@
 
 PKUAutoRun 是一个顾名思义的工具。它面向 iOS/iPadOS，理论上支持 Windows/macOS/Linux（Linux 平台未经测试）。通过 PKUAutoRun ，你甚至可以使用 iPad 完成跑步打卡（尽显赛博本色）。然而，如果你并不使用 iPhone/iPad ，那就无法直接使用这个项目。不过针对其他平台，[这里](https://github.com/yiguanxianyu/PKUAutoRun#可能的方案)也给出了一些相应的建议。
 
-尽管功能不多，不过它已经足够你进行跑步打卡了。由于不知道这个方法能活多久，大家且用且珍惜罢
+存在较高风险，请使用者自行承担后果！！！
 
 **功能**
 
