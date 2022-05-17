@@ -41,7 +41,12 @@ class ST:
         xp = np.linspace(start - 20, end + 20, num)
         yp = npr.randn(num) / 3
 
-        self.f = scipy.interpolate.interp1d(xp, yp, kind='cubic')
+        self.func = scipy.interpolate.interp1d(xp, yp, kind='cubic')
+
+    def f(self, _x):
+        if random() < 0.4:
+            return 0
+        return self.func(_x)
 
 
 s_t_func = None
@@ -204,13 +209,14 @@ def gen_record(distance, start_point=None):
         s1 = (3 + 3 * s_t_func(t)) * w
         # 给轨迹加上随机漂移
         point = move(t1, s1) + rand_shift[i]
+
+        if points:
+            dist_generated += d_latlon(point, points[-1])
+
         points.append(point)
 
         i += 1
         t = t1
-
-        if len(points) >= 2:
-            dist_generated += d_latlon(points[-2], points[-1])
 
     p = np.array(points)[:, [1, 0]]
     index = np.arange(len(p)).reshape(-1, 1) + 1

@@ -11,13 +11,12 @@ import image
 from gen_record import gen_record
 
 
-async def auto_run_gen(points, time_delta, location_simulator):
+async def auto_run(points,location_simulator):
     async def set_loc(lat, lon, t):
         await asyncio.sleep(t)
         location_simulator.set(lat, lon)
 
-    tasks = [set_loc(p[0], p[1], p[2] * time_delta) for p in points]
-    await asyncio.gather(*tasks)
+    await asyncio.gather(*(set_loc(*p) for p in points))
 
 
 def main(distance, speed):
@@ -59,7 +58,7 @@ def main(distance, speed):
     image.mount_image(device_lockdown_client, ios_version)
     location_simulator = DtSimulateLocation(lockdown=device_lockdown_client)
 
-    points = gen_record(distance)
+    points = gen_record(distance*1.05)
     total_time = speed * distance / 1000
 
     dur_time = timedelta(seconds=total_time)
@@ -67,15 +66,15 @@ def main(distance, speed):
 
     print(f"""
 跑步开始：
-  总里程：\t{int(distance)}米
+  总里程：\t{distance}米
   平均配速：\t{speed // 60}分{speed % 60}秒 每公里
   总时长：\t{dur_time}
   开始时间：\t{curr_time}
   结束时间：\t{dur_time + curr_time}（预计）
     """)
 
-    time_delta = total_time / len(points)
-    asyncio.run(auto_run_gen(points, time_delta, location_simulator))
+    points[:,2] *= total_time / len(points)
+    asyncio.run(auto_run(points, location_simulator))
     image.unmount_image(device_lockdown_client)
 
     print('跑步完成, 请在手机上结束跑步。建议重启设备。')
