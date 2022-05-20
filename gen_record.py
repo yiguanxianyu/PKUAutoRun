@@ -41,7 +41,7 @@ class ST:
         xp = np.linspace(start - 20, end + 20, num)
 
         offset = npr.randn(num)
-        offset = np.where(offset > 1.3, 1.5 * offset, offset)
+        offset = np.where(offset > 1.25, 2 * offset, offset)
         offset = np.where(offset < -1, -1, offset)
         yp = (offset * 2 + 5) * w
 
@@ -183,14 +183,13 @@ def adjust_pp_d(t0: float, d0: float):
     return scipy.optimize.bisect(f, t0, t2)
 
 
-def gen_record(distance, start_point=None):
+def gen_record(distance, speed):
     """
     生成点轨迹
     """
     npr.seed(int(random() * 1e5))
     # 起始点位置，默认为操场西北角位置附近
-    if start_point is None:
-        start_point = 50 * (random() + 1)
+    start_point = 50 * (random() + 1)
 
     global s_t_func
     s_t_func = ST(start_point, start_point + distance).f
@@ -200,12 +199,11 @@ def gen_record(distance, start_point=None):
     t = start_point
     step = 4  # 基本步长
 
-    rand_offset = npr.randn(10000) * 0.05
+    rand_offset = npr.randn(10000) * 0.02
     dist_straight = rand_offset + step
     dist_curve = rand_offset + step * 0.867
 
     rand_shift = npr.randn(10000) * 0.000003
-    rand_shift *= np.abs(np.int32(npr.randn(10000))) * 2 + 1
     rand_shift = rand_shift.reshape(-1, 2)
     rand_shift[:, 1] *= cos(radians(center[1]))
 
@@ -230,6 +228,23 @@ def gen_record(distance, start_point=None):
         i += 1
         t = t1
 
+    v = 1000 / speed
+    time = []
+    cumulate_time = 0
+    rs = (npr.randn(len(points)) / 10 + 1) * v
+    for i in range(len(points)):
+        if i == 0:
+            dur_time = 0
+        elif i == len(points) - 1:
+            dist = d_latlon(points[i - 1], points[i])
+            dur_time = dist / rs[i]
+        else:
+            dist = d_latlon(points[i + 1], points[i - 1])
+            dur_time = 0.5 * dist / rs[i]
+
+        cumulate_time += dur_time
+        time.append(cumulate_time)
+
     p = np.array(points)[:, [1, 0]]
-    index = np.arange(len(p)).reshape(-1, 1) + 1
+    index = np.array(time).reshape(-1, 1)
     return np.append(p, index, axis=1)

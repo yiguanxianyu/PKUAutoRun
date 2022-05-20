@@ -1,32 +1,36 @@
 # -*- coding:utf-8 -*
 from pathlib import Path
-from zipfile import ZipFile
 
 from pymobiledevice3.services.mobile_image_mounter import MobileImageMounterService
 from wget import download
 
 
+# from zipfile import ZipFile
+
+
 def download_image(ios_version):
     base_dir = './Contents/Developer/Platforms/iPhoneOS.platform/DeviceSupport/'
-    base_url = 'https://raw.fastgit.org/filsv/iPhoneOSDeviceSupport/master/'
+    base_url = 'https://raw.fastgit.org/pdso/DeveloperDiskImage/master/{}/DeveloperDiskImage.dmg'
 
-    img_dir = base_dir + ios_version + '.zip'
-    img_url = base_url + ios_version + '.zip'
+    img_dir = base_dir + ios_version + '/.DeveloperDiskImage.dmg'
+    sig_dir = base_dir + ios_version + '/.DeveloperDiskImage.dmg.signature'
+    img_url = base_url.format(ios_version)
+    sig_url = img_url + '.signature'
 
     Path(base_dir).mkdir(parents=True, exist_ok=True)
 
     print('开始下载模拟所需的开发者镜像文件')
-    if not Path(img_dir).exists():
+    if not (Path(img_dir).exists() and Path(sig_dir).exists()):
         print('···正在下载镜像文件，此过程可能较费时，请耐心等待')
         download(img_url, base_dir)
-        print()
+        download(sig_url, base_dir)
     else:
         print('···镜像文件已存在')
     print('镜像下载完成')
 
-    with ZipFile(img_dir) as zf:
-        zf.extractall(base_dir)
-        print('镜像解压缩完成')
+    # with ZipFile(img_dir) as zf:
+    #     zf.extractall(base_dir)
+    #     print('镜像解压缩完成')
 
 
 def unmount_image(lockdown):

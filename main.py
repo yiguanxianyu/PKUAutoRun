@@ -11,7 +11,7 @@ import image
 from gen_record import gen_record
 
 
-async def auto_run(points,location_simulator):
+async def auto_run(points, location_simulator):
     async def set_loc(lat, lon, t):
         await asyncio.sleep(t)
         location_simulator.set(lat, lon)
@@ -51,15 +51,16 @@ def main(distance, speed):
     print(f'已连接到您的 {device_class}: {device_name}, iOS/iPadOS 版本为 {ios_version}。')
     print('请确保在镜像挂载完成之前手机已解锁且屏幕亮起。')
 
-    ios_version_replace = {'14.8': '14.7', '15.1': '15.0'}
+    ios_version_replace = {'14.8': '14.7', '15.1': '15.0', '15.5': '15.4'}
     if ios_version in ios_version_replace:
         ios_version = ios_version_replace[ios_version]
 
     image.mount_image(device_lockdown_client, ios_version)
     location_simulator = DtSimulateLocation(lockdown=device_lockdown_client)
 
-    points = gen_record(distance*1.05)
-    total_time = speed * distance / 1000
+    # 生成记录
+    points = gen_record(distance * 1.05, speed)
+    total_time = points[-1][-1]
 
     dur_time = timedelta(seconds=total_time)
     curr_time = datetime.now().replace(microsecond=0)
@@ -73,7 +74,6 @@ def main(distance, speed):
   结束时间：\t{dur_time + curr_time}（预计）
     """)
 
-    points[:,2] *= total_time / len(points)
     asyncio.run(auto_run(points, location_simulator))
     image.unmount_image(device_lockdown_client)
 
