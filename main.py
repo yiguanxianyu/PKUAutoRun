@@ -51,7 +51,7 @@ def main(distance, speed):
     print(f'已连接到您的 {device_class}: {device_name}, iOS/iPadOS 版本为 {ios_version}。')
     print('请确保在镜像挂载完成之前手机已解锁且屏幕亮起。')
 
-    ios_version_replace = {'14.8': '14.7', '15.1': '15.0', '15.5': '15.4'}
+    ios_version_replace = {'14.8': '14.7', '15.1': '15.0'}
     if ios_version in ios_version_replace:
         ios_version = ios_version_replace[ios_version]
 
@@ -59,9 +59,9 @@ def main(distance, speed):
     location_simulator = DtSimulateLocation(lockdown=device_lockdown_client)
 
     # 生成记录
-    points = gen_record(distance * 1.05, speed)
+    points = gen_record(distance, speed)
 
-    dur_time = timedelta(seconds=points[-1][-1])
+    dur_time = timedelta(seconds=points[-1][-1], microseconds=0)
     curr_time = datetime.now().replace(microsecond=0)
 
     print(f"""

@@ -9,11 +9,11 @@ from wget import download
 
 
 def download_image(ios_version):
-    base_dir = './Contents/Developer/Platforms/iPhoneOS.platform/DeviceSupport/'
+    base_dir = './Contents/Developer/Platforms/iPhoneOS.platform/DeviceSupport/' + ios_version
     base_url = 'https://raw.fastgit.org/pdso/DeveloperDiskImage/master/{}/DeveloperDiskImage.dmg'
 
-    img_dir = base_dir + ios_version + '/.DeveloperDiskImage.dmg'
-    sig_dir = base_dir + ios_version + '/.DeveloperDiskImage.dmg.signature'
+    img_dir = base_dir + '/.DeveloperDiskImage.dmg'
+    sig_dir = img_dir + '.signature'
     img_url = base_url.format(ios_version)
     sig_url = img_url + '.signature'
 

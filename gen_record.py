@@ -228,10 +228,9 @@ def gen_record(distance, speed):
         i += 1
         t = t1
 
-    v = 1000 / speed
     time = []
     cumulate_time = 0
-    rs = (npr.randn(len(points)) / 10 + 1) * v
+    rs = (npr.randn(len(points)) / 10 + 1) * 1000 / speed
     for i in range(len(points)):
         if i == 0:
             dur_time = 0
