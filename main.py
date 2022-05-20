@@ -60,9 +60,8 @@ def main(distance, speed):
 
     # 生成记录
     points = gen_record(distance * 1.05, speed)
-    total_time = points[-1][-1]
 
-    dur_time = timedelta(seconds=total_time)
+    dur_time = timedelta(seconds=points[-1][-1])
     curr_time = datetime.now().replace(microsecond=0)
 
     print(f"""
