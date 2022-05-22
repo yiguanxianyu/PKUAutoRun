@@ -12,7 +12,7 @@ def download_image(ios_version):
     base_dir = './Contents/Developer/Platforms/iPhoneOS.platform/DeviceSupport/' + ios_version
     base_url = 'https://raw.fastgit.org/pdso/DeveloperDiskImage/master/{}/DeveloperDiskImage.dmg'
 
-    img_dir = base_dir + '/.DeveloperDiskImage.dmg'
+    img_dir = base_dir + '/DeveloperDiskImage.dmg'
     sig_dir = img_dir + '.signature'
     img_url = base_url.format(ios_version)
     sig_url = img_url + '.signature'
@@ -20,13 +20,13 @@ def download_image(ios_version):
     Path(base_dir).mkdir(parents=True, exist_ok=True)
 
     print('开始下载模拟所需的开发者镜像文件')
-    if not (Path(img_dir).exists() and Path(sig_dir).exists()):
+    if Path(img_dir).exists() and Path(sig_dir).exists():
+        print('···镜像文件已存在')
+    else:
         print('···正在下载镜像文件，此过程可能较费时，请耐心等待')
         download(img_url, base_dir)
         download(sig_url, base_dir)
-    else:
-        print('···镜像文件已存在')
-    print('镜像下载完成')
+        print('镜像下载完成')
 
     # with ZipFile(img_dir) as zf:
     #     zf.extractall(base_dir)
