@@ -22,7 +22,7 @@ PKUAutoRun 是一个顾名思义的工具。它面向 iOS/iPadOS，支持 Window
 
 2. 安装 [Python3](https://www.python.org/)。支持 `Python 3.6+` ；
 
-3. 下载本项目代码，并安装程序运行所需的依赖包。推荐使用虚拟环境：
+3. 下载本项目代码，并安装程序运行所需的依赖包：
     
     ```
     $ pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
