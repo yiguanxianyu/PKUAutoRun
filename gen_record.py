@@ -15,6 +15,7 @@ import numpy as np
 import numpy.random as npr
 import scipy.interpolate
 import scipy.optimize
+from scipy.stats import norm
 
 center = np.array([116.30713526140399,
                    39.986307321096085])  # 操场中心点（调了很久！本人没有精确定位工具！）
@@ -183,6 +184,26 @@ def adjust_pp_d(t0: float, d0: float):
     return scipy.optimize.bisect(f, t0, t2)
 
 
+def get_smooth_random_shift():
+    """
+    生成“平滑”的随机偏移量
+    每次迭代，基于前一个点上下浮动，浮动方向以正态分布偏向于中间
+    """
+    val = []
+    for i in range(0, 10000):
+        last = val[-1] if val else 0
+        r = random()
+        if r > 2 / 3:
+            # 三分之一可能性不改方向
+            val.append(last)
+        else:
+            # 更多或更少
+            r = 3 * r / 2
+            sign = 1 if r > norm.cdf(last, scale=5) else -1
+        val.append(last + sign)
+    return np.array(val) * 0.00001
+
+
 def gen_record(distance, speed):
     """
     生成点轨迹
@@ -203,8 +224,7 @@ def gen_record(distance, speed):
     dist_straight = rand_offset + step
     dist_curve = rand_offset + step * 0.867
 
-    rand_shift = npr.randn(10000) * 0.000003
-    rand_shift = rand_shift.reshape(-1, 2)
+    rand_shift = get_smooth_random_shift().reshape(2, -1).T
     rand_shift[:, 1] *= cos(radians(center[1]))
 
     i = 0
