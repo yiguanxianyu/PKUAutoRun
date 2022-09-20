@@ -2,7 +2,7 @@
 
 赛博跑步机，或许是一种可以偷懒的方法，也或许不能。
 
-当前版本 v1.0.0 (2022-05-13)，[更新日志](https://github.com/yiguanxianyu/PKUAutoRun/blob/main/CHANGELOG.md)。如果有各种问题欢迎提 issue。~~真的不来尝试一下吗\~~~
+当前版本 v1.1.0 (2022-09-21)，[更新日志](https://github.com/yiguanxianyu/PKUAutoRun/blob/main/CHANGELOG.md)。如果有各种问题欢迎提 issue。~~真的不来尝试一下吗\~~~
 
 PKUAutoRun 是一个顾名思义的工具。它面向 iOS/iPadOS，支持 Windows/macOS/Linux（Linux 平台未经测试）。通过 PKUAutoRun ，你甚至可以使用 iPad 完成跑步打卡（尽显赛博本色）。然而，如果你并不使用 iPhone/iPad/iPod ，那就无法直接使用这个项目。
 
@@ -50,7 +50,7 @@ PKUAutoRun 是一个顾名思义的工具。它面向 iOS/iPadOS，支持 Window
 
 3. 如果中途需要关闭程序或者拔掉手机怎么办？
 
-   请先手动结束跑步。这之后，你需要通过手动重启来恢复原本的定位。方法：`设置 -> 通用-> 拉到最底 -> 关机`。
+   请先手动结束跑步。这之后，你需要通过手动重启来恢复原本的定位。方法：`设置 -> 通用 -> 拉到最底 -> 关机`。
 
 4. 我的运动步数为 0 ？
 
