@@ -184,23 +184,26 @@ def adjust_pp_d(t0: float, d0: float):
     return scipy.optimize.bisect(f, t0, t2)
 
 
-def get_smooth_random_shift():
+def get_smooth_random_shift(num_points):
     """
-    生成“平滑”的随机偏移量
+    生成「平滑」的随机偏移量
     每次迭代，基于前一个点上下浮动，浮动方向以正态分布偏向于中间
     """
+    prob = 2 / 3
     val = []
-    for i in range(0, 10000):
-        last = val[-1] if val else 0
+    last = 0
+    for i in range(num_points):
         r = random()
-        if r > 2 / 3:
+        if r > prob:
             # 三分之一可能性不改方向
             val.append(last)
         else:
             # 更多或更少
             r = 3 * r / 2
             sign = 1 if r > norm.cdf(last, scale=5) else -1
-        val.append(last + sign)
+            val.append(last + sign)
+        last = val[-1]    
+        
     return np.array(val) * 0.00001
 
 
@@ -219,12 +222,13 @@ def gen_record(distance, speed):
     dist_generated = 0.0
     t = start_point
     step = 4  # 基本步长
+    num_points = 10000 # 生成轨迹点的数量
 
-    rand_offset = npr.randn(10000) * 0.02
+    rand_offset = npr.randn(num_points) * 0.02
     dist_straight = rand_offset + step
     dist_curve = rand_offset + step * 0.867
 
-    rand_shift = get_smooth_random_shift().reshape(2, -1).T
+    rand_shift = get_smooth_random_shift(num_points).reshape(2, -1).T
     rand_shift[:, 1] *= cos(radians(center[1]))
 
     i = 0
