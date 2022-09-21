@@ -29,6 +29,8 @@ def main(distance, speed):
         return
 
     num_devices = len(device_list)
+    index = 0
+    
     if num_devices > 1:
         print('发现多台设备:')
 
@@ -38,9 +40,7 @@ def main(distance, speed):
         index = int(input('请输入对应数字以选择设备: '))
         device = device_list[index]
 
-    else:
-        device = device_list[0]
-
+    device = device_list[index]
     device_lockdown_client = LockdownClient(device.serial)
 
     device_info = device_lockdown_client.all_values
