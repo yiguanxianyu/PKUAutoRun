@@ -189,20 +189,26 @@ def get_smooth_random_shift(num_points):
     生成「平滑」的随机偏移量
     每次迭代，基于前一个点上下浮动，浮动方向以正态分布偏向于中间
     """
-    prob = 2 / 3
     val = []
     last = 0
+    sign = 0
+    prob = 2 / 3
+    rands = npr.rand(num_points)
+    rands_prob = rands / prob
+    
     for i in range(num_points):
-        r = random()
-        if r > prob:
+        if rands[i] > prob:
             # 三分之一可能性不改方向
-            val.append(last)
+            sign = 0
+        elif rands_prob[i] > norm.cdf(last, scale=5):
+            # 更多
+            sign = 1
         else:
-            # 更多或更少
-            r = 3 * r / 2
-            sign = 1 if r > norm.cdf(last, scale=5) else -1
-            val.append(last + sign)
-        last = val[-1]    
+            # 更少
+            sign = -1
+        
+        last += sign
+        val.append(last)   
         
     return np.array(val) * 0.00001
 
