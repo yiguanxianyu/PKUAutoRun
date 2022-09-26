@@ -74,16 +74,17 @@ def main(distance, speed):
     """)
 
     asyncio.run(auto_run(points, location_simulator))
-    image.unmount_image(device_lockdown_client)
 
     print('跑步完成, 请在手机上结束跑步。建议重启设备。')
-    print('- 输入 0 以清除定位但不重启设备；')
-    print('- 输入 1 以清除定位并且重启设备；')
-    print('- 如果什么也不做，可以直接退出程序。')
+    print('· 输入 0 以清除定位但不重启设备；')
+    print('· 输入 1 以清除定位并且重启设备；')
+    print('· 如果什么也不做，可以直接退出程序，')
+    print('  请注意这种情况下定位会被保留在最后一次的位置。')
 
     arg = input()
     if arg == '0':
         location_simulator.clear()
+        image.unmount_image(device_lockdown_client)
     elif arg == '1':
         DiagnosticsService(device_lockdown_client).restart()
 
@@ -99,7 +100,7 @@ if __name__ == '__main__':
  | |    | . \| |__| / ____ \ |_| | || (_) | | \ \ |_| | | | |
  |_|    |_|\_\_____/_/    \_\____|\__\___/|_|  \_\____|_| |_|
 ''')
-    print('\nPKUAutoRun v1.0.0')
+    print('\nPKUAutoRun v1.1.0')
     print('提示: 如果要使用多台设备同时打卡, 请多开本程序')
 
     _distance = int(input('请输入跑步里程(米), 如5公里输入5000: '))
