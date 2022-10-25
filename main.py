@@ -48,14 +48,17 @@ def main(distance, speed):
     ios_version = device_info['ProductVersion'][0:4]
     device_name = device_info['DeviceName']
 
-    print(f'已连接到您的 {device_class}: {device_name}, iOS/iPadOS 版本为 {ios_version}。')
+    print(f'已连接到您的{device_class}: {device_name}, 系统版本为{ios_version}')
     print('请确保在镜像挂载完成之前手机已解锁且屏幕亮起。')
 
     ios_version_replace = {'14.8': '14.7', '15.1': '15.0'}
     if ios_version in ios_version_replace:
         ios_version = ios_version_replace[ios_version]
 
-    image.mount_image(device_lockdown_client, ios_version)
+    result = image.mount_image(device_lockdown_client, ios_version)
+    if result == 0:
+        return
+
     location_simulator = DtSimulateLocation(lockdown=device_lockdown_client)
 
     # 生成记录
@@ -75,7 +78,7 @@ def main(distance, speed):
 
     asyncio.run(auto_run(points, location_simulator))
 
-    print('跑步完成, 请在手机上结束跑步。建议重启设备。')
+    print('跑步完成, 请在手机上结束跑步，建议清除定位。')
     print('· 输入 0 以清除定位但不重启设备；')
     print('· 输入 1 以清除定位并且重启设备；')
     print('· 如果什么也不做，可以直接退出程序，')

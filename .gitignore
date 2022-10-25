@@ -132,3 +132,4 @@ dmypy.json
 
 Contents
 preprocessed
+*.DS_Store

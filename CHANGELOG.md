@@ -1,5 +1,9 @@
 # PKUAutoRun CHANGELOG
 
+## v1.2.0
+
+适配 iOS 16。
+
 ## v1.1.0
 
 优化程序生成的轨迹，使其更加符合真实情况。参见[此PR](https://github.com/yiguanxianyu/PKUAutoRun/pull/4)
