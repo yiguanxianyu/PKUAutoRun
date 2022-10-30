@@ -8,15 +8,17 @@ PKUAutoRun 是一个顾名思义的工具。它面向 iOS/iPadOS，支持 Window
 
 ### 重要：iOS 16 请阅读下文
 
-在 iOS 16 中，Apple 修改了开发者模式的逻辑。现在你需要一些额外的操作才能够开启开发者模式以使用 PKUAutoRun。
+在 iOS 16 中，Apple 修改了开发者模式的逻辑，现在你需要一些额外的操作才能够开启开发者模式以使用 PKUAutoRun。
 
 - 推荐方案
   
-  找到一台已经安装了 Xcode 的 Mac 电脑，打开 Xcode 随意新建一个 Swift 项目，并将设备连接到 Mac。在 `设置-隐私与安全性-安全性` 中找到并打开开发者模式。
+  - 使用已经安装了 Xcode 的 Mac 电脑，打开 Xcode 随意新建一个 Swift 项目，并将设备连接到 Mac。在 `设置-隐私与安全性-安全性` 中找到并打开开发者模式。
 
-- 替代方案
+  - 对于 Windows 系统，请下载并安装 [爱思助手](https://www.i4.cn/) 并安装，在工具箱中找到虚拟定位模块，随意选择一个地址并确定，按照提示打开开发者模式。如果你安装了爱思助手，就不需要再安装 iTunes。
 
-  如果你无法找到安装了 Xcode 的 Mac 设备，你需要关闭设备密码再运行本程序。会自动为你开启开发者模式。开启开发者模式之后，你可以立即打开密码，或者在运行完程序后再打开。在打开密码后，开发者模式将立即失效，你需要手动重启一次设备来重新激活开发者模式。
+- 可选方案
+
+  如果不愿或无法使用推荐方案，你需要关闭设备密码再运行本程序。会自动为你开启开发者模式。开启开发者模式之后，你可以立即打开密码，或者在运行完程序后再打开。在打开密码后，开发者模式将立即失效，你需要手动重启一次设备来重新激活开发者模式。
 
 **功能**
 
@@ -28,7 +30,7 @@ PKUAutoRun 是一个顾名思义的工具。它面向 iOS/iPadOS，支持 Window
 
 0. 如果你看不懂下面的说明，可以找一位工具人代劳。
 
-1. Windows 用户下载 [iTunes](https://www.apple.com.cn/itunes/) 64位版并安装。你可以直接[点击这里](https://www.apple.com/itunes/download/win64)下载，**不要使用 Microsoft Store 版本的 iTunes**；我们只需要iTunes中的 Apple Mobile Device Support，所以如果你用不到其他的话可以卸载掉 Apple Software Update, Bonjour 和 iTunes.
+1. Windows 用户下载[爱思助手](https://www.i4.cn/)（推荐）或 [iTunes](https://www.apple.com.cn/itunes/) 64位版并安装。iTunes 可以直接[点击这里](https://www.apple.com/itunes/download/win64)下载，**不要使用 Microsoft Store 版本的 iTunes**。本项目只依赖 iTunes 中的 Apple Mobile Device Support，所以如果你用不到其他的话可以卸载掉 Apple Software Update, Bonjour 和 iTunes 本体.
 
 2. 安装 [Python3](https://www.python.org/)。支持 `Python 3.6+` ；
 
