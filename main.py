@@ -1,6 +1,7 @@
 # -*- coding:utf-8 -*
 import asyncio
 from datetime import datetime, timedelta
+import time
 
 from pymobiledevice3.lockdown import LockdownClient
 from pymobiledevice3.services.diagnostics import DiagnosticsService
@@ -12,6 +13,7 @@ from gen_record import gen_record
 
 
 async def auto_run(points, location_simulator):
+
     async def set_loc(lat, lon, t):
         await asyncio.sleep(t)
         location_simulator.set(lat, lon)
@@ -30,7 +32,7 @@ def main(distance, speed):
 
     num_devices = len(device_list)
     index = 0
-    
+
     if num_devices > 1:
         print('发现多台设备:')
 
@@ -51,19 +53,24 @@ def main(distance, speed):
     print(f'已连接到您的{device_class}: {device_name}, 系统版本为{ios_version}')
     print('请确保在镜像挂载完成之前手机已解锁且屏幕亮起。')
 
-    ios_version_replace = {'14.8': '14.7', '15.1': '15.0'}
+    ios_version_replace = {'14.8': '14.5', '15.1': '15.0', '15.3': '15.2', '16.2': '16.1', '16.3': '16.1'}
     if ios_version in ios_version_replace:
         ios_version = ios_version_replace[ios_version]
 
-    result = image.mount_image(device_lockdown_client, ios_version)
-    if result == 0:
+    try:
+        result = image.mount_image(device_lockdown_client, ios_version)
+    except Exception as e:
+        if "'Error': 'DeviceLocked'" in str(e):
+            print('设备已锁定，请先解锁设备。')
+        else:
+            print(e)
         return
-
-    location_simulator = DtSimulateLocation(lockdown=device_lockdown_client)
+    else:
+        if result == 0:
+            return
 
     # 生成记录
     points = gen_record(distance, speed)
-
     dur_time = timedelta(seconds=round(points[-1][-1]))
     curr_time = datetime.now().replace(microsecond=0)
 
@@ -76,6 +83,7 @@ def main(distance, speed):
   结束时间：\t{dur_time + curr_time}（预计）
     """)
 
+    location_simulator = DtSimulateLocation(lockdown=device_lockdown_client)
     asyncio.run(auto_run(points, location_simulator))
 
     print('跑步完成, 请在手机上结束跑步，建议清除定位。')
@@ -103,7 +111,7 @@ if __name__ == '__main__':
  | |    | . \| |__| / ____ \ |_| | || (_) | | \ \ |_| | | | |
  |_|    |_|\_\_____/_/    \_\____|\__\___/|_|  \_\____|_| |_|
 ''')
-    print('\nPKUAutoRun v1.1.0')
+    print('\nPKUAutoRun v1.2.1')
     print('提示: 如果要使用多台设备同时打卡, 请多开本程序')
 
     _distance = int(input('请输入跑步里程(米), 如5公里输入5000: '))
@@ -114,7 +122,7 @@ if __name__ == '__main__':
     if not 240 < _speed < 600:
         print('警告：配速不符合要求')
 
-    # 如果在 Python 脚本中运行程序，可以直接在下面修改路径使用：
+    # 如果在 Python 脚本中运行程序，可以直接在下面修改参数使用：
     # _distance = 10000
     # _speed = 280
     main(_distance, _speed)

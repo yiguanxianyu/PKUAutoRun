@@ -2,7 +2,7 @@
 
 赛博跑步机，或许是一种可以偷懒的方法，也或许不能。**请使用者自行承担后果。**
 
-当前版本 v1.2.0 (2022-09-21)，[更新日志](https://github.com/yiguanxianyu/PKUAutoRun/blob/main/CHANGELOG.md)。如果有各种问题欢迎提 issue。~~真的不来尝试一下吗\~~~
+当前版本 v1.2.1 (2023-02-20)，[更新日志](https://github.com/yiguanxianyu/PKUAutoRun/blob/main/CHANGELOG.md)。如果有各种问题欢迎提 issue。~~真的不来尝试一下吗\~~~
 
 PKUAutoRun 是一个顾名思义的工具。它面向 iOS/iPadOS，支持 Windows/macOS/Linux（Linux 平台未经测试）。通过 PKUAutoRun ，你甚至可以使用 iPad 完成跑步打卡（尽显赛博本色）。然而，如果你并不使用 iPhone/iPad/iPod ，那就无法直接使用这个项目。由于本程序所依赖的项目仍在积极开发中，如果你在运行过程中遇到任何问题，请先考虑再运行一次程序。
 
@@ -18,7 +18,7 @@ PKUAutoRun 是一个顾名思义的工具。它面向 iOS/iPadOS，支持 Window
 
 - 可选方案
 
-  如果不愿或无法使用推荐方案，你需要关闭设备密码再运行本程序。会自动为你开启开发者模式。开启开发者模式之后，你可以立即打开密码，或者在运行完程序后再打开。在打开密码后，开发者模式将立即失效，你需要手动重启一次设备来重新激活开发者模式。
+  如果不愿或无法使用推荐方案，你需要关闭设备密码再运行脚本，脚本会自动为你开启开发者模式。在运行完程序后，你可以再打开密码，此时开发者模式将立即失效，你需要手动重启设备并重新激活开发者模式。
 
 **功能**
 
@@ -30,7 +30,7 @@ PKUAutoRun 是一个顾名思义的工具。它面向 iOS/iPadOS，支持 Window
 
 0. 如果你看不懂下面的说明，可以找一位工具人代劳。
 
-1. Windows 用户下载[爱思助手](https://www.i4.cn/)（推荐）或 [iTunes](https://www.apple.com.cn/itunes/) 64位版并安装。iTunes 可以直接[点击这里](https://www.apple.com/itunes/download/win64)下载，**不要使用 Microsoft Store 版本的 iTunes**。本项目只依赖 iTunes 中的 Apple Mobile Device Support，所以如果你用不到其他的话可以卸载掉 Apple Software Update, Bonjour 和 iTunes 本体.
+1. Windows 用户下载[爱思助手](https://www.i4.cn/)（推荐）或 [iTunes](https://www.apple.com.cn/itunes/) 64位版并安装。iTunes 可以直接[点击这里](https://www.apple.com/itunes/download/win64)下载，**不要使用 Microsoft Store 版本的 iTunes**。本项目只依赖 iTunes 中的 Apple Mobile Device Support，所以如果你用不到其他的模块话可以卸载掉 Apple Software Update, Bonjour 和 iTunes 本体.
 
 2. 安装 [Python3](https://www.python.org/)。支持 `Python 3.6+` ；
 

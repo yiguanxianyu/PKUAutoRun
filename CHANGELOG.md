@@ -1,5 +1,9 @@
 # PKUAutoRun CHANGELOG
 
+## v1.2.1
+
+修复bug，增加部分报错提示。
+
 ## v1.2.0
 
 适配 iOS 16。
