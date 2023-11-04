@@ -53,7 +53,7 @@ def main(distance, speed):
     print(f'已连接到您的{device_class}: {device_name}, 系统版本为{ios_version}')
     print('请确保在镜像挂载完成之前手机已解锁且屏幕亮起。')
 
-    ios_version_replace = {'14.8': '14.5', '15.1': '15.0', '15.3': '15.2', '16.2': '16.1', '16.3': '16.1'}
+    ios_version_replace = {'14.8': '14.5', '15.1': '15.0', '15.3': '15.2', '16.2': '16.1', '16.3': '16.1', '16.6': '16.5', '16.7': '16.5'}
     if ios_version in ios_version_replace:
         ios_version = ios_version_replace[ios_version]
 
