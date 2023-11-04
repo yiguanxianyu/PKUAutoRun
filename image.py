@@ -8,7 +8,7 @@ from requests import get
 
 def download_image(ios_version):
     base_dir = f'./Contents/Developer/Platforms/iPhoneOS.platform/DeviceSupport/{ios_version}'
-    base_url = f'https://fastly.jsdelivr.net/gh/pdso/DeveloperDiskImage@master/{ios_version}/DeveloperDiskImage.dmg'
+    base_url = f'https://ghproxy.net/https://raw.githubusercontent.com/pdso/DeveloperDiskImage/master/{ios_version[0:2]}/{ios_version}/DeveloperDiskImage.dmg'
 
     img_dir = base_dir + '/DeveloperDiskImage.dmg'
     img_url = base_url
