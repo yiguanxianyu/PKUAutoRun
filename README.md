@@ -4,8 +4,6 @@
 
 当前版本 v1.2.1 (2023-02-20)，[更新日志](https://github.com/yiguanxianyu/PKUAutoRun/blob/main/CHANGELOG.md)。如果有各种问题欢迎提 issue。~~真的不来尝试一下吗\~~~
 
-> **本仓库为个人 fork**：相对上游的维护说明、**测试环境**与**免责声明**见根目录 [`FORK.md`](FORK.md)。
-
 PKUAutoRun 是一个顾名思义的工具。它面向 iOS/iPadOS，支持 Windows/macOS/Linux（Linux 平台未经测试）。通过 PKUAutoRun ，你甚至可以使用 iPad 完成跑步打卡。然而，如果你并不使用 iPhone/iPad/iPod ，那就无法直接使用这个项目。由于本程序所依赖的项目仍在积极开发中，如果你在运行过程中遇到任何问题，请先考虑再运行一次程序。
 
 ### 重要：iOS 16 请阅读下文
@@ -41,19 +39,15 @@ PKUAutoRun 是一个顾名思义的工具。它面向 iOS/iPadOS，支持 Window
     $ pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
     ```
 
-    Windows 下一键创建虚拟环境并安装依赖：在资源管理器中双击 `scripts\setup_venv.bat`，或在项目根目录 PowerShell 执行 `.\scripts\setup_venv.ps1`（若提示脚本策略，可先执行 `Set-ExecutionPolicy -Scope CurrentUser RemoteSigned`）。本仓库**不提交** `venv/` 与 `.vscode/`；用 Cursor / VS Code 时请在本地自行选择解释器为 `venv\Scripts\python.exe`（命令面板：**Python: Select Interpreter**）。
-
-    装好依赖后，**运行程序**：直接双击项目根目录的 `run.bat`；或在 PowerShell 中执行 `.\run.ps1`。
-
 4. 将你的设备通过 USB 端口连接到电脑；
 
 5. 解锁设备，选择信任此电脑，并保持屏幕亮起；
 
-6. 关闭打卡软件除了定位和网络以外的所有权限；
+5. 关闭打卡软件除了定位和网络以外的所有权限；
 
-7. 运行程序：双击 `run.bat`，或在已激活的虚拟环境里执行 `python main.py`，并按提示设定里程与配速；
+6. 运行 `main.py`，并设定相关配置；
 
-8. 在打卡软件中开始跑步，这之后你可以让设备屏幕自动关闭。
+7. 在打卡软件中开始跑步，这之后你可以让设备屏幕自动关闭。
 
 ## Q&A
 
@@ -72,12 +66,6 @@ PKUAutoRun 是一个顾名思义的工具。它面向 iOS/iPadOS，支持 Window
 4. 我的运动步数为 0 ？
 
    由于苹果对于开发者的限制，iOS 只支持模拟定位，而不支持模拟以下内容：定位误差、海拔及其误差、航向、速度、步数等。对于乐动力来说可以通过关闭健康权限的方式避免计步从而绕过这个问题。目前来看这一点并不影响使用。
-
-5. 如何中断程序（例如不想跑了、想提前退出）？
-
-   在运行 `run.bat` 或终端里执行本程序时，在**黑色命令行窗口为当前焦点**的情况下按 **`Ctrl + C`** 即可中断。若正在等待你输入（里程、配速等），有时需要按**两次** `Ctrl + C` 才会完全退出。建议用 `Ctrl + C` 结束，尽量不要直接点窗口右上角关闭，以免进程不能干净退出。
-
-   中断后，手机上的**模拟定位可能仍停留在最后一次位置**。若程序已走到「跑步完成」后的提示，可按提示输入 **0** 或 **1** 清除定位；若来不及选就关掉了程序，请参考 **第 3 条 Q&A**（中途关闭程序 / 恢复定位），通过重启手机等方式恢复。
 
 ## 鸣谢
 
