@@ -130,6 +130,18 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-Contents
+Contents/
 preprocessed
 *.DS_Store
+
+# Windows 杂项
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# 本机 / Cursor / 编辑器个人配置（勿提交，避免绑定他人路径）
+.cursor/
+assets/
+.vscode/
+*.code-workspace

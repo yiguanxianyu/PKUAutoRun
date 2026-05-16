@@ -52,9 +52,6 @@ class ST:
         self.f = scipy.interpolate.interp1d(xp, yp, kind='cubic')
 
 
-s_t_func = None
-
-
 def rot(angle):
     """
     逆时针旋转矩阵
@@ -208,8 +205,8 @@ def get_smooth_random_shift(num_points):
             sign = -1
         
         last += sign
-        val.append(last)   
-        
+        val.append(last)
+
     return np.array(val) * 0.00001
 
 
@@ -221,14 +218,13 @@ def gen_record(distance, speed):
     # 起始点位置，默认为操场西北角位置附近
     start_point = 50 * (random() + 1)
 
-    global s_t_func
-    s_t_func = ST(start_point, start_point + distance).f
+    lane_offset = ST(start_point, start_point + distance).f
 
     points = []
     dist_generated = 0.0
     t = start_point
     step = 4  # 基本步长
-    num_points = 10000 # 生成轨迹点的数量
+    num_points = 10000  # 生成轨迹点的数量
 
     rand_offset = npr.randn(num_points) * 0.02
     dist_straight = rand_offset + step
@@ -239,14 +235,14 @@ def gen_record(distance, speed):
 
     i = 0
     while dist_generated < distance:
-        temp = t % 400
-        if temp < d1 or d2 < temp < d3:
+        t_mod = t % 400
+        if t_mod < d1 or d2 < t_mod < d3:
             d0 = dist_straight[i]
         else:
             d0 = dist_curve[i]  # 前进的距离
 
         t1 = adjust_pp_d(t, d0)
-        s1 = s_t_func(t)
+        s1 = lane_offset(t)
         # 给轨迹加上随机漂移
         point = move(t1, s1) + rand_shift[i]
 
